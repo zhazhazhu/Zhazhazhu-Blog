@@ -1,11 +1,19 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'tabBar',
-    component: () => import('/@/layout/index.vue')
-  }
+    name: 'TabBar',
+    component: () => import('/@/layout/index.vue'),
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('/@/view/home.vue')
+      }
+    ]
+  },
+
 ]
 
 const router = createRouter({
