@@ -1,12 +1,15 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import BalmUI from 'balm-ui'; // Official Google Material Components
 import 'balm-ui-css';
+import router from "/@/router/index";
+import setupBalm from "/@/balm";
 
 async function bootstrap() {
   const app = createApp(App)
-  app.use(BalmUI);
 
+  setupBalm(app)
+
+  app.use(router)
   app.mount('#app')
 }
 
