@@ -1,0 +1,22 @@
+.el-container {
+  display: flex;
+
+  .el-menu-vertical > .el-menu-item {
+    height: 64px;
+    line-height: 30px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logo {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .el-main {
+    padding: 0;
+  }
+}
