@@ -27,7 +27,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
     // authentication schemes，e.g: Bearer
     // authenticationScheme: 'Bearer',
     timeout: 10 * 1000,
-    baseURL:window.projectConfig.hosts.blogs,
+    baseURL: window.projectConfig.hosts.blogs,
     // 基础接口地址
     // 接口可能会有通用的地址部分，可以统一抽取出来
     // urlPrefix: urlPrefix,
@@ -65,7 +65,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
     (config: CreateAxiosOptions) => {
       axiosInstance._config = config
 
-      if(config.method === 'post' && config.headers){
+      if (config.method === 'post' && config.headers) {
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         config.data = qs.stringify(config.data)
       }
@@ -74,7 +74,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
       // }
       return config
     },
-    
+
     (error) => {
       return Promise.reject(error)
     }
@@ -101,5 +101,4 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
   return axiosInstance
 }
 
-export const defHttp = createAxios({
-})
+export const defHttp = createAxios()
