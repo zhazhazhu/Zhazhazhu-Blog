@@ -4,7 +4,7 @@ import {ref} from 'vue'
 
 <template>
   <el-container>
-    <el-aside style="max-width: 100px">
+    <el-aside style="max-width: 90px">
       <el-menu
           default-active="home"
           class="el-menu-vertical"
