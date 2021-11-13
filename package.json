@@ -8,15 +8,17 @@
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
-    "@types/node": "^16.11.6",
     "axios": "^0.24.0",
     "balm-ui": "^9.38.0",
     "element-plus": "^1.2.0-beta.1",
+    "qs": "^6.10.1",
     "vue": "^3.2.16",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^1.9.3",
     "node-sass": "^6.0.1",
     "sass": "^1.43.4",
