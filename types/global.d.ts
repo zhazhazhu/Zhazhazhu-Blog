@@ -3,13 +3,14 @@ import type {
 } from 'vue';
 
 type ProjectConfig = {
-  hosts:T
+  hosts: T;
+  BaseURL: string
 }
 
 declare global {
   interface Window {
     projectConfig: ProjectConfig;
   }
-  
+
   declare type PropType<T> = VuePropType<T>;
 }
