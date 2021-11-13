@@ -68,14 +68,16 @@ export interface RequestOptions {
   withToken?: boolean
 }
 export interface Result<T = any> {
-  code: number | string
-  count: number
-  message: string | null
+  code: number
   data: T
+  count?: number
+  message?: string
 }
 
 declare module 'axios' {
-  export interface AxiosInstance {
+  export interface AxiosInstance<T = any> {
     _config: CreateAxiosOptions
+    get(...key = T): Promise<Result>
+    post(...key = T): Promise<Result>
   }
 }
