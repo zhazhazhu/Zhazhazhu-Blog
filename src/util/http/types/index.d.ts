@@ -70,7 +70,8 @@ export interface RequestOptions {
 export interface Result<T = any> {
   code: number
   data: T
-  count?: number
+  pages?: number
+  total?: number
   message?: string
 }
 
