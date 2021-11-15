@@ -10,6 +10,7 @@
     "@element-plus/icons": "^0.0.11",
     "axios": "^0.24.0",
     "balm-ui": "^9.38.0",
+    "dayjs": "^1.10.7",
     "element-plus": "^1.2.0-beta.1",
     "qs": "^6.10.1",
     "vue": "^3.2.16",
