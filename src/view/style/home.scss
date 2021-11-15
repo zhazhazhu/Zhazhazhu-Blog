@@ -1,0 +1,20 @@
+.box-card{
+  border: none;
+  margin-left: 50px;
+  :deep(.el-card__header){
+    border: none;
+    .created-time{
+      display: flex;
+      align-items: center;
+      color: rgb(141, 141, 141);
+      font-size: 14px;
+      .material-icons{
+        font-size: 14px;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+.footer{
+  margin: 20px 50px 50px 50px;
+}

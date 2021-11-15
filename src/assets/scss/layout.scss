@@ -1,0 +1,43 @@
+.el-container {
+  display: flex;
+  .el-aside{
+    position: fixed;
+    left: 0;
+    max-width: 80px;
+    height: 100vh;
+    z-index: 999;
+  }
+
+  .el-menu-vertical{
+    height: 100vh;
+    .el-menu-item {
+      height: 64px;
+      line-height: 30px;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .logo {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .el-container {
+    flex-direction: column;
+    width: calc(100vw - 80px);
+    margin-left: 80px;
+    right: 0px;
+    padding: 0;
+    .footer-info{
+      text-align: center;
+      line-height: 75px;
+      font-size: 14px;
+      height: 75px;
+      border-top: 1px solid rgb(216, 216, 216);
+    }
+  }
+}
