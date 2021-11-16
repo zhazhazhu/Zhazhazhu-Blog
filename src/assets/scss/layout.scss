@@ -29,6 +29,7 @@
   .el-container {
     flex-direction: column;
     width: calc(100vw - 80px);
+    height: 100%;
     margin-left: 80px;
     right: 0px;
     padding: 0;
@@ -37,6 +38,7 @@
       line-height: 75px;
       font-size: 14px;
       height: 75px;
+
       border-top: 1px solid rgb(216, 216, 216);
     }
   }

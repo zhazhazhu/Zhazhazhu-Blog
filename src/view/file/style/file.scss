@@ -1,0 +1,41 @@
+
+header{
+  margin-left: 35%;
+}
+main{
+  margin-left: calc(35% + 45px);
+  .content{
+    width: 40%;
+    .list-content{
+      display: flex;
+      align-items: center;
+      padding: 14px 0;
+      border-left: 1px dashed rgb(216, 216, 216);
+      .icon{
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: rgb(214, 214, 214);
+        margin-right: 10px;
+      }
+      .time{
+        width: 50px;
+        font-size: 14px;
+        color: rgb(58, 58, 58);
+        margin: 0 10px;
+      }
+      .title{
+        margin: 0 10px;
+        letter-spacing: 2px;
+        font-size: 14px;
+        font-weight:500;
+        color: #127ea9;
+      }
+    }
+  }
+}
+footer{
+  margin-left: calc(35% + 135px);
+  margin-top: 40px;
+}
+
