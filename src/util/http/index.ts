@@ -32,6 +32,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
     // 接口可能会有通用的地址部分，可以统一抽取出来
     // urlPrefix: urlPrefix,
     headers: { 'Content-Type': ContentTypeEnum.JSON },
+    withCredentials: true,
     // 如果是form-data格式
     // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
     // 数据处理方式
@@ -64,7 +65,6 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
   axiosInstance.interceptors.request.use(
     (config: CreateAxiosOptions) => {
       axiosInstance._config = config
-
       if (config.method === 'post' && config.headers) {
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         config.data = qs.stringify(config.data)

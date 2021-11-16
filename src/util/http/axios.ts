@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 import type { AxiosRequestConfig } from 'axios'
 import { CreateAxiosOptions } from "./types";
+import { Result } from './types/index';
 
 
 export class QAxios {
@@ -11,11 +12,11 @@ export class QAxios {
     this.setupInterceptors();
   }
 
-  get<T = any>(url: string, config: AxiosRequestConfig): Promise<T> {
+  get<T = any>(url: string, config: AxiosRequestConfig): Promise<Result<T>> {
     config.method = 'GET'
     return this.axiosInstance.get(url, config)
   }
-  post<T = any>(url: string, config: AxiosRequestConfig): Promise<T> {
+  post<T = any>(url: string, config: AxiosRequestConfig): Promise<Result<T>> {
     config.method = 'POST'
     return this.axiosInstance.get(url, config)
   }

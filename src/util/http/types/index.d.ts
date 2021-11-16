@@ -73,6 +73,7 @@ export interface Result<T = any> {
   pages?: number
   total?: number
   message?: string
+  [key:string]: string
 }
 
 declare module 'axios' {
