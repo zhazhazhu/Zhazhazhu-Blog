@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import ElContainer, { ElCarousel, ElImage, ElMenu, ElAside, ElMain, ElCard, ElPagination, ElBacktop,ElButton } from 'element-plus'
+import ElContainer, { ElCarousel, ElImage, ElMenu, ElAside, ElMain, ElCard, ElPagination, ElBacktop, ElButton, ElUpload } from 'element-plus'
 
 const elList = [
   ElCarousel,
@@ -11,7 +11,8 @@ const elList = [
   ElButton,
   ElCard,
   ElPagination,
-  ElBacktop
+  ElBacktop,
+  ElUpload
 ]
 function setupElement(app: App) {
   elList.forEach((item) => {
