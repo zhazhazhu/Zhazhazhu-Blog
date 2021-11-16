@@ -1,28 +1,28 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import dayjs from 'dayjs';
+import { useRoute } from 'vue-router';
+const route = useRoute()
 </script>
 
 <template>
   <el-container>
     <el-aside>
       <el-menu
-        default-active="home"
+        :default-active="route.fullPath"
         class="el-menu-vertical"
         router
-        @open="handleOpen"
-        @close="handleClose"
       >
         <div class="logo">
           <ui-icon :size="40">trip_origin</ui-icon>
         </div>
-        <el-menu-item index="home">
+        <el-menu-item index="/home">
           <ui-icon :size="18">house_siding</ui-icon>首 页
         </el-menu-item>
         <el-menu-item index="/file">
           <ui-icon :size="18">folder_open</ui-icon>归 档
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="/photo">
           <ui-icon :size="18">crop_original</ui-icon>相 册
         </el-menu-item>
         <el-menu-item index="3">

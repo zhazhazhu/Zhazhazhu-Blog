@@ -1,3 +1,23 @@
+.header-img{
+  .el-image{
+    position: relative;
+  }
+  .title-button{
+    position: absolute;
+    top: 20vh;
+    left: 16vw;
+    color: #fff;
+    button{
+      color: #fff;
+      font-size: 4em;
+    }
+    .text{
+      margin-top: 30px;
+      margin-left: 20px;
+    }
+  }
+}
+
 .box-card{
   border: none;
   margin-left: 50px;

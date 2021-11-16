@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import dayjs from 'dayjs'
-import { getBlogList } from '../api/blogs';
-import { searchListModel } from '../api/types/blogsModel';
+import { getBlogList } from '../../api/blogs';
+import { searchListModel } from '../../api/types/blogsModel';
 import { blogListModel } from './types/homeModel';
 
 const initBlogList = () => ref<blogListModel[]>([])
@@ -27,15 +27,6 @@ async function getBlog() {
   }
 }
 
-const icon1 = {
-  on: 'favorite',
-  off: 'favorite_border'
-}
-const icon2 = {
-  on: 'bookmark',
-  off: 'bookmark_border'
-}
-
 onMounted(() => {
   getBlog()
 })
@@ -45,6 +36,10 @@ onMounted(() => {
 <template>
   <div class="header-img">
     <el-image fit="cover" style="width: 100%;height: 100vh" src="src/assets/image/Sunflower1.jpg"></el-image>
+    <div class="title-button">
+      <ui-button>Q 渣渣猪</ui-button>
+      <div class="text">GitHub | Gitee</div>
+    </div>
   </div>
   <div class="aside-button">
     <ui-icon-button icon="menu_open" outlined></ui-icon-button>
