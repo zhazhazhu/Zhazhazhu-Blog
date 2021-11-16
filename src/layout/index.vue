@@ -1,20 +1,22 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import dayjs from 'dayjs';
-import { useRoute } from 'vue-router';
+import { useRoute,useRouter } from 'vue-router';
+
+const router = useRouter()
 const route = useRoute()
+
+function home(){
+  router.push('/home')
+}
 </script>
 
 <template>
   <el-container>
     <el-aside>
-      <el-menu
-        :default-active="route.fullPath"
-        class="el-menu-vertical"
-        router
-      >
+      <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
-          <ui-icon :size="40">trip_origin</ui-icon>
+          <ui-icon :size="40" @click="home">trip_origin</ui-icon>
         </div>
         <el-menu-item index="/home">
           <ui-icon :size="18">house_siding</ui-icon>首 页
@@ -41,7 +43,7 @@ const route = useRoute()
     </el-aside>
     <el-container>
       <router-view />
-      <div class="footer-info">Q渣渣猪 © {{dayjs().format('YYYY')}}</div>
+      <div class="footer-info">Q渣渣猪 © {{ dayjs().format('YYYY') }}</div>
     </el-container>
   </el-container>
 </template>
