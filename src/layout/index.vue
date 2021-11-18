@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import dayjs from 'dayjs';
-import { useRoute,useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter()
 const route = useRoute()
 
-function home(){
+function home() {
   router.push('/home')
 }
 </script>

@@ -2,7 +2,6 @@ import { ContentTypeEnum } from '/@/enums/httpEnum'
 import axios, { AxiosResponse } from 'axios'
 import { CreateAxiosOptions } from './types'
 import { deepMerge } from '../../enums/httpEnum';
-import * as qs from 'qs'
 
 const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxiosOptions) => {
   const { status, data, config, statusText } = response
@@ -65,10 +64,6 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
   axiosInstance.interceptors.request.use(
     (config: CreateAxiosOptions) => {
       axiosInstance._config = config
-      if (config.method === 'post' && config.headers) {
-        config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-        config.data = qs.stringify(config.data)
-      }
       // if (config.data && config.headers?.['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8') {
       //   config.data = qs.stringify(config.data);
       // }

@@ -35,9 +35,9 @@ onMounted(() => {
 
 <template>
   <div class="header-img">
-    <el-image fit="cover" style="width: 100%;height: 100vh" src="src/assets/image/Sunflower1.jpg"></el-image>
+    <el-image fit="cover" style="width: 100%;height: 100vh" src="src/assets/image/Sunflower2.jpg"></el-image>
     <div class="title-button">
-      <ui-button>Q 渣渣猪</ui-button>
+      <el-button type="text">Q 渣渣猪</el-button>
       <div class="text">GitHub | Gitee</div>
     </div>
   </div>
@@ -51,7 +51,7 @@ onMounted(() => {
           <h1>{{ blog.title }}</h1>
           <div class="created-time">
             <ui-icon size="16">date_range</ui-icon>
-            {{ blog.createdAt }}
+            {{ dayjs(blog.createdAt).format('YYYY/MM/DD') }}
           </div>
         </div>
       </template>

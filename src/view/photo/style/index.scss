@@ -1,0 +1,9 @@
+.demo {
+  max-width: 800px;
+  margin: 0 auto;
+  column-count:4;
+  column-gap:16;
+  .image-item{
+    margin-bottom: 10px;
+  }
+}
