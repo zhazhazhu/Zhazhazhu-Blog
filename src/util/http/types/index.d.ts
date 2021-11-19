@@ -72,7 +72,7 @@ export interface Result<T = any> {
   data: T
   pages?: number
   total?: number
-  message?: string
+  message: string
   [key:string]: string
 }
 
