@@ -38,7 +38,8 @@ onMounted(() => {
     <el-image fit="cover" style="width: 100%;height: 100vh" src="src/assets/image/Sunflower2.jpg"></el-image>
     <div class="title-button">
       <el-button type="text">Q 渣渣猪</el-button>
-      <div class="text">GitHub | Gitee</div>
+      <div class="text">秋天该很好 ｜ 没有烟 ｜ 总有花 ｜ 张国荣</div>
+      <el-image class="logo" src="/@/assets/image/Logo-white.png"></el-image>
     </div>
   </div>
   <div class="aside-button">
