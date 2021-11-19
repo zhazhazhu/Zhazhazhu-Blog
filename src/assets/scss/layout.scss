@@ -1,5 +1,9 @@
 .el-container {
   display: flex;
+  .logo{
+    width: 70px;
+    margin: 0 auto;
+  }
   .el-aside{
     position: fixed;
     left: 0;
