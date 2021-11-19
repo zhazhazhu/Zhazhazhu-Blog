@@ -3,6 +3,7 @@ import { store } from '..';
 import { UserInfo } from '../../../types/store';
 import { setLocalToken } from '../../util/auth/index';
 import router from '/@/router/index';
+import { getUserInfo } from '/@/api/user';
 
 interface UserState {
   userInfo: UserInfo | null;
@@ -52,6 +53,7 @@ export const useUserStore = defineStore({
       this.setToken(token)
       this.setExpiresIn(expiresIn)
       setLocalToken(token)
+      await getUserInfo()
       router.push('/home')
     }
   }
