@@ -21,7 +21,6 @@ const searchData = ref<searchListModel>({
 async function getBlog() {
   const { code, data, pages, total } = await getBlogList(searchData.value)
   if (code === 1) {
-    searchData.value.pageIndex = pages || 1
     searchData.value.totalCount = total || 1
     blogList.value = data
   }

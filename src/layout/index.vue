@@ -1,12 +1,21 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs';
-import { useRoute, useRouter } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useUserStoreWithOut } from '../store/modules/user';
+import blogRoutes from '../router/model/blog';
 
-const router = useRouter()
+const userStore = useUserStoreWithOut()
+const avatar = computed(() => {
+  return userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+})
+
+
 const route = useRoute()
 
-function home() {
-  router.push('/home')
+function activeLogout() {
+  const userStore = useUserStoreWithOut()
+  userStore.logout()
 }
 </script>
 
@@ -15,25 +24,18 @@ function home() {
     <el-aside>
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
-          <ui-icon :size="40" @click="home">trip_origin</ui-icon>
+          <el-dropdown>
+            <el-avatar shape="square" :size="40" :src="avatar"></el-avatar>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="activeLogout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
-        <el-menu-item index="/home">
-          <ui-icon :size="18">house_siding</ui-icon>首 页
-        </el-menu-item>
-        <el-menu-item index="/file">
-          <ui-icon :size="18">folder_open</ui-icon>归 档
-        </el-menu-item>
-        <el-menu-item index="/photo">
-          <ui-icon :size="18">crop_original</ui-icon>相 册
-        </el-menu-item>
-        <el-menu-item index="3">
-          <ui-icon :size="18">opacity</ui-icon>收 藏
-        </el-menu-item>
-        <el-menu-item index="3">
-          <ui-icon :size="18">ios_share</ui-icon>关 于
-        </el-menu-item>
-        <el-menu-item index="3">
-          <ui-icon :size="18">search</ui-icon>搜 索
+        <el-menu-item v-for="route in blogRoutes" :key="route.name" :index="route.path">
+          <ui-icon :size="18">{{ route.meta?.Icon }}</ui-icon>
+          {{ route.meta?.Menu }}
         </el-menu-item>
       </el-menu>
       <el-backtop>

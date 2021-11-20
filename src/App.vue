@@ -3,10 +3,10 @@ import { onMounted } from 'vue';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { getLocalToken, getLocalExpiresIn } from './util/auth/index';
 
-const token = getLocalToken()
-const expiresIn = getLocalExpiresIn()
 onMounted(() => {
   const userStore = useUserStoreWithOut()
+  const token = userStore.getToken || getLocalToken()
+  const expiresIn = userStore.getExpiresIn || getLocalExpiresIn()
   if (token && expiresIn) {
     userStore.login(token, expiresIn)
   }
@@ -15,10 +15,7 @@ onMounted(() => {
 
 <template>
   <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component :is="Component" :key="$route.name" v-if="$route.meta.keepAlive" />
-    </keep-alive>
-    <component :is="Component" :key="$route.name" v-if="!$route.meta.keepAlive" />
+    <component :is="Component" :key="$route.name" />
   </router-view>
 </template>
 

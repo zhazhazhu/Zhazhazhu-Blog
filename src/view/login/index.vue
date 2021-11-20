@@ -17,7 +17,7 @@ async function signIn() {
   const { code, data } = await login(user.value)
   if (code === 1) {
     const { token, expiresIn } = data
-    userStore.login(token, expiresIn)
+    userStore.login(token, Date.now() + (expiresIn * 1000))
     ElMessage({
       message: 'LOGIN SUCCESS...'
     })
@@ -60,7 +60,7 @@ function goRegister() {
         </template>
       </ui-textfield>
       <ui-textfield-helper id="2" validMsg="passWord no null"></ui-textfield-helper>
-      <ui-button @click="signIn" @enter="signIn" :type="2">登 录</ui-button>
+      <ui-button @click="signIn" :type="2">登 录</ui-button>
       <div class="button-bottom">
         <ui-button @click="goRegister">注册</ui-button>
         <ui-button>忘记密码?</ui-button>

@@ -1,36 +1,36 @@
 import { RouteRecordRaw } from 'vue-router';
 
-const blogRoutes: RouteRecordRaw ={
-  path: '/',
-  name: 'TabBar',
-  component: () => import('/@/layout/index.vue'),
-  redirect: 'login',
-  children: [
-    {
-      path: 'home',
-      name: 'Home',
-      component: () => import('/@/view/home/home.vue'),
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '/file',
-      name: 'File',
-      component: () => import('/@/view/file/file.vue'),
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '/photo',
-      name: 'Photo',
-      component: () => import('/@/view/photo/index.vue'),
-      meta: {
-        keepAlive: true
-      }
+const blogRoutes: RouteRecordRaw[] = [
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('/@/view/home/home.vue'),
+    meta: {
+      Icon:'house_siding',
+      Menu:'首页',
+      keepAlive: true
     }
-  ]
-}
+  },
+  {
+    path: '/file',
+    name: 'File',
+    component: () => import('/@/view/file/file.vue'),
+    meta: {
+      Icon:'folder_open',
+      Menu:'归档',
+      keepAlive: true
+    }
+  },
+  {
+    path: '/photo',
+    name: 'Photo',
+    component: () => import('/@/view/photo/index.vue'),
+    meta: {
+      Icon:'crop_original',
+      Menu:'相册',
+      keepAlive: true
+    }
+  }
+]
 
 export default blogRoutes

@@ -2,7 +2,8 @@ import { ContentTypeEnum } from '/@/enums/httpEnum'
 import axios, { AxiosResponse } from 'axios'
 import { CreateAxiosOptions } from './types'
 import { deepMerge } from '../../enums/httpEnum';
-import { getLocalToken } from '../auth/index';
+import { getLocalToken, getLocalExpiresIn, isExpiresIn } from '../auth/index';
+import { useUserStoreWithOut } from '../../store/modules/user';
 
 const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxiosOptions) => {
   const { status, data, config, statusText } = response
@@ -31,7 +32,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
     // 基础接口地址
     // 接口可能会有通用的地址部分，可以统一抽取出来
     // urlPrefix: urlPrefix,
-    headers: { 'Content-Type': ContentTypeEnum.JSON, 'Authorization': 'Bearer ' + getLocalToken() },
+    headers: { 'Content-Type': ContentTypeEnum.JSON },
     withCredentials: true,
     // 如果是form-data格式
     // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
@@ -64,16 +65,20 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
 
   axiosInstance.interceptors.request.use(
     (config: CreateAxiosOptions) => {
-      if (config.url === '/login' && config.headers?.Authorization) {
-        config.headers.Authorization = ''
+      if (config.headers) {
+        config.headers['Authorization'] = 'Bearer ' + getLocalToken()
       }
       axiosInstance._config = config
+      const expiresIn = getLocalExpiresIn()
+      if (expiresIn && isExpiresIn(expiresIn)) {
+        const userStore = useUserStoreWithOut()
+        userStore.logout()
+      }
       // if (config.data && config.headers?.['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8') {
       //   config.data = qs.stringify(config.data);
       // }
       return config
     },
-
     (error) => {
       return Promise.reject(error)
     }
