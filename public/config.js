@@ -6,7 +6,11 @@ const ports = {
 }
 
 const hosts = {
-  blogs: `${hostname}:${ports.blogs}`
+  blogs: `${hostname}:${ports.blogs}`,
 }
 
-window.projectConfig = { hosts }
+function uploadAvatar() {
+  return `${hostname}:${ports.blogs}/api/Form/UploadFiles`
+}
+
+window.projectConfig = { hosts, uploadAvatar }
