@@ -3,6 +3,10 @@ import { ref } from 'vue';
 import { userInfoModel } from './types/index';
 import type { ElForm } from 'element-plus';
 import { register } from '/@/api/user';
+import router from '/@/router';
+import myUpload from 'vue-image-crop-upload';
+import { ElMessage } from 'element-plus';
+import { convertBase64UrlToBlob } from '/@/util/Base64ToBlog';
 
 function validatePass(rule, value, cb) {
   if (value === '') {
@@ -41,6 +45,8 @@ const userInfo = ref<userInfoModel>({
   phoneNumber: ''
 })
 
+const uploadUrl = window.projectConfig.uploadAvatar()
+
 function actionRegister() {
   userFormRef.value?.validate(async (valid) => {
     if (valid) {
@@ -52,17 +58,71 @@ function actionRegister() {
         avatar,
         phoneNumber
       }
-      await register(dto)
-      return true
+      const { code, message } = await register(dto)
+      if (code === 1) {
+        ElMessage({
+          message: `${message} 即将跳转登录页...`
+        })
+        setTimeout(() => {
+          router.go(-1)
+        }, 3000)
+        return true
+      } else {
+        ElMessage.error({
+          message
+        })
+      }
     }
     return false
   })
 }
 
+function returnLogin() {
+  router.go(-1)
+}
+
 const userFormRef = ref<InstanceType<typeof ElForm>>()
+
+const show = ref(false)
+const imgDataUrl = ref<FormData>()
+function cropSuccess(url, field) {
+  const blob = convertBase64UrlToBlob(url)
+  const formData = new FormData()
+  formData.append('File', blob, Date.now() + field)
+  imgDataUrl.value = formData
+}
+function cropUploadSuccess(res) {
+  const { code, data, message } = res
+  if (code === 1) {
+    userInfo.value.avatar = data[0]
+    ElMessage.success({
+      message
+    })
+  }
+}
+function cropUploadFail(status, field) {
+  console.log('-------- upload fail --------');
+  console.log(status);
+  console.log('field: ' + field);
+}
+
+function upload() {
+  show.value = true
+}
 </script>
 
 <template>
+  <my-upload
+    field="file"
+    @crop-success="cropSuccess"
+    @crop-upload-success="cropUploadSuccess"
+    @crop-upload-fail="cropUploadFail"
+    v-model="show"
+    :width="500"
+    :height="500"
+    :url="uploadUrl"
+    img-format="png"
+  ></my-upload>
   <!-- <el-image src="/@/assets/image/Login.png" class="img"></el-image> -->
   <main class="content">
     <header>
@@ -111,12 +171,12 @@ const userFormRef = ref<InstanceType<typeof ElForm>>()
           </ui-textfield>
         </el-form-item>
       </el-form>
-      <ui-button :type="1" style="margin-bottom: 24px;">上传头像</ui-button>
+      <ui-button @click="upload" :type="1" style="margin-bottom: 24px;">上传头像</ui-button>
 
       <ui-button @click="actionRegister" :type="2">注 册</ui-button>
 
       <div class="button-bottom">
-        <ui-button>返 回</ui-button>
+        <ui-button @click="returnLogin">返 回</ui-button>
       </div>
     </div>
   </main>

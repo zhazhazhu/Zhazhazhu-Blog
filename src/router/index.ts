@@ -8,8 +8,9 @@ const routes: RouteRecordRaw[] = [
     name: 'TabBar',
     component: () => import('/@/layout/index.vue'),
     redirect: 'login',
-    children: [...blogRoutes, ...loginRoutes]
+    children: [...blogRoutes]
   },
+  ...loginRoutes
 ]
 
 const router = createRouter({

@@ -4,7 +4,8 @@ import type {
 
 type ProjectConfig = {
   hosts: T;
-  BaseURL: string
+  BaseURL: string;
+  uploadAvatar: Function
 }
 
 declare global {
