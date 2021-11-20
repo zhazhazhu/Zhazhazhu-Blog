@@ -7,7 +7,9 @@ const token = getLocalToken()
 const expiresIn = getLocalExpiresIn()
 onMounted(() => {
   const userStore = useUserStoreWithOut()
-  userStore.login(token, expiresIn)
+  if (token && expiresIn) {
+    userStore.login(token, expiresIn)
+  }
 })
 </script>
 
