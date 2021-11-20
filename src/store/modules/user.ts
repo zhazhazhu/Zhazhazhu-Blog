@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { store } from '..';
 import { UserInfo } from '../../../types/store';
-import { setLocalToken } from '../../util/auth/index';
+import { setLocalToken, getLocalToken, setLocalExpiresIn, getLocalExpiresIn, setLocalUserInfo, getLocalUserInfo } from '/@/util/auth/index';
 import router from '/@/router/index';
 import { getUserInfo } from '/@/api/user';
 
@@ -22,40 +22,37 @@ export const useUserStore = defineStore({
   }),
   getters: {
     getUserInfo(): UserInfo {
-      return this.userInfo || {
-        userName: '',
-        email: '',
-        avatar: '',
-        phoneNumber: '',
-      }
+      return this.userInfo || getLocalUserInfo()
     },
     getToken(): string {
-      return this.token
+      return this.token || getLocalToken()
     },
     getExpiresIn(): number {
-      return this.expiresIn
+      return this.expiresIn || getLocalExpiresIn()
     },
   },
   actions: {
     setUserInfo(userInfo: UserInfo) {
-      this.userInfo = userInfo
+      this.userInfo = userInfo && setLocalUserInfo(userInfo)
     },
     setToken(token: string) {
-      this.token = token
+      this.token = token && setLocalToken(token)
     },
     setExpiresIn(expiresIn: number) {
-      this.expiresIn = expiresIn
+      this.expiresIn = expiresIn && setLocalExpiresIn(expiresIn)
     },
     /**
      * @login
      */
     async login(token: string, expiresIn: number) {
-      this.setToken(token)
-      this.setExpiresIn(expiresIn)
-      setLocalToken(token)
-      await getUserInfo()
+      await this.setToken(token)
+      await this.setExpiresIn(expiresIn)
+      const { code, data } = await getUserInfo()
+      if (code === 1) {
+        await this.setUserInfo(data)
+      }
       router.push('/home')
-    }
+    },
   }
 })
 
