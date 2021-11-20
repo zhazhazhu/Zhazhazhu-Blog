@@ -1,15 +1,20 @@
 import { defHttp } from '../util/http/index';
-import { userModel } from '../view/login/types/index';
+import { userModel, userDataModel } from '../view/login/types/index';
 
 enum API {
-  login = '/login',
-  userInfo = '/userInfo'
+  Login = '/login',
+  UserInfo = '/userInfo',
+  Register = '/register'
 }
 
 export function login(user: userModel) {
-  return defHttp.post(API.login, user)
+  return defHttp.post(API.Login, user)
 }
 
 export function getUserInfo() {
-  return defHttp.get(API.userInfo)
+  return defHttp.get(API.UserInfo)
+}
+
+export function register(dto: userDataModel) {
+  return defHttp.post(API.Register, dto)
 }
