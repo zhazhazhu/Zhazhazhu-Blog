@@ -70,9 +70,9 @@ export interface RequestOptions {
 export interface Result<T = any> {
   code: number
   data: T
+  message: string
   pages?: number
   total?: number
-  message: string
   [key:string]: string
 }
 
