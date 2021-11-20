@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+import { useUserStoreWithOut } from '/@/store/modules/user';
+import { getLocalToken, getLocalExpiresIn } from './util/auth/index';
+
+const token = getLocalToken()
+const expiresIn = getLocalExpiresIn()
+onMounted(() => {
+  const userStore = useUserStoreWithOut()
+  userStore.login(token, expiresIn)
+})
 </script>
 
 <template>
