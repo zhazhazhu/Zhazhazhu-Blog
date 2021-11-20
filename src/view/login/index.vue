@@ -4,6 +4,7 @@ import { login } from '../../api/user';
 import { userModel } from './types/index';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { ElMessage } from 'element-plus';
+import router from '/@/router';
 
 const user = ref<userModel>({
   userName: '',
@@ -22,11 +23,18 @@ async function signIn() {
     })
   }
 }
+
+function goRegister() {
+  router.push('/register')
+}
 </script>
 
 <template>
+  <!-- <el-image src="/@/assets/image/Login.png" class="img"></el-image> -->
   <main class="content">
-    <header>LOGO</header>
+    <header>
+      <el-image src="/@/assets/image/Logo.png"></el-image>
+    </header>
     <div class="user">
       <ui-textfield class="input" required helperTextId="1" v-model="user.userName">
         UserName
@@ -52,10 +60,10 @@ async function signIn() {
         </template>
       </ui-textfield>
       <ui-textfield-helper id="2" validMsg="passWord no null"></ui-textfield-helper>
-      <ui-button @click="signIn" @enter="signIn">Sign In</ui-button>
+      <ui-button @click="signIn" @enter="signIn" :type="2">登 录</ui-button>
       <div class="button-bottom">
-        <ui-button>Create User</ui-button>
-        <ui-button>Not Password</ui-button>
+        <ui-button @click="goRegister">注册</ui-button>
+        <ui-button>忘记密码?</ui-button>
       </div>
     </div>
   </main>
