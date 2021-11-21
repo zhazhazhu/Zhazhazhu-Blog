@@ -7,3 +7,14 @@
     margin-bottom: 10px;
   }
 }
+@media screen and (max-width: 500px) {
+  header{
+    margin-left: 60px;
+  }
+  .demo{
+    max-width: 350px;
+    column-count:2;
+    column-gap:16;
+    margin: 0;
+  }
+}
