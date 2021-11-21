@@ -28,21 +28,24 @@ function signIn() {
         text: 'Loading...',
         background: 'rgba(0, 0, 0, 0.7)',
       });
-      const { code, data } = await login(user.value)
+      const { code, data, message } = await login(user.value)
       if (code === 1) {
         const { token, expiresIn } = data
         userStore.login(token, Date.now() + (expiresIn * 1000))
-        loading.close()
         ElMessage({
           message: 'LOGIN SUCCESS...'
         })
+      } else {
+        ElMessage.error({
+          message
+        })
       }
+      loading.close()
       return true
     } else {
       return false
     }
   })
-
 }
 
 function goRegister() {

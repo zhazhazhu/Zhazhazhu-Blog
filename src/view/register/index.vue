@@ -69,7 +69,6 @@ function actionRegister() {
           message: `${message} 即将跳转登录页...`
         })
         setTimeout(() => {
-          loading.close()
           router.push('/login')
         }, 2000)
         return true
@@ -78,6 +77,7 @@ function actionRegister() {
           message
         })
       }
+      loading.close()
     }
     return false
   })
