@@ -1,8 +1,5 @@
 main {
-  .main-content{
-    transition: all 0.3s ease-in-out;
-    transform: translate(80px);
-  }
+  overflow-x: hidden;
   .logo{
     margin: 0 auto;
   }
@@ -12,6 +9,12 @@ main {
     max-width: 80px;
     height: 100vh;
     z-index: 999;
+    transform: translate(-80px);
+    transition: all 0.3s ease-in-out;
+  }
+  .el-aside.on{
+    transform: translate(0px);
+    transition: all 0.3s ease-in-out;
   }
   .el-menu-vertical{
     height: 100vh;
@@ -32,6 +35,11 @@ main {
   .footer-index {
     right: 0px;
     padding: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .footer-index.on{
+    transform: translate(80px);
+    transition: all 0.3s ease-in-out;
   }
   .footer-info{
     bottom: 0;

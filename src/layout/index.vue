@@ -22,16 +22,20 @@ const isCollapse = ref(false)
 function clickMenu() {
   isCollapse.value = !isCollapse.value
 }
+
+function closeMenu() {
+  isCollapse.value = false
+}
 </script>
 
 <template>
-  <main class="zuida">
+  <main>
     <div class="aside-button" :class="{ 'isMenu': isCollapse }">
       <el-affix :offset="20">
         <ui-icon @click="clickMenu">menu_open</ui-icon>
       </el-affix>
     </div>
-    <el-aside v-show="isCollapse">
+    <el-aside :class="{ 'on': isCollapse }">
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
           <el-dropdown>
@@ -48,11 +52,11 @@ function clickMenu() {
           <span>{{ route.meta?.Menu }}</span>
         </el-menu-item>
       </el-menu>
-      <el-backtop>
+      <el-backtop right="20">
         <ui-icon>arrow_circle_up</ui-icon>
       </el-backtop>
     </el-aside>
-    <main class="footer-index" :class="{ 'main-content': isCollapse }">
+    <main class="footer-index" :class="{ 'on': isCollapse }" @click="closeMenu">
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="$route.name" />
       </router-view>
