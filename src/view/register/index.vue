@@ -126,7 +126,7 @@ function upload() {
   <!-- <el-image src="/@/assets/image/Login.png" class="img"></el-image> -->
   <main class="content">
     <header>
-      <el-image src="/@/assets/image/Logo.png"></el-image>
+      <el-image src="/image/Logo.png"></el-image>
     </header>
     <div class="user">
       <el-form ref="userFormRef" :model="userInfo" :rules="UserRules">

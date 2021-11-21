@@ -33,7 +33,7 @@ function goRegister() {
   <!-- <el-image src="/@/assets/image/Login.png" class="img"></el-image> -->
   <main class="content">
     <header>
-      <el-image src="/@/assets/image/Logo.png"></el-image>
+      <el-image src="/image/Logo.png"></el-image>
     </header>
     <div class="user">
       <ui-textfield class="input" required helperTextId="1" v-model="user.userName">

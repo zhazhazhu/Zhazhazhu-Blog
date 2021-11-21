@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUserStoreWithOut } from '../store/modules/user';
 import blogRoutes from '../router/model/blog';
@@ -17,11 +17,21 @@ function activeLogout() {
   const userStore = useUserStoreWithOut()
   userStore.logout()
 }
+
+const isCollapse = ref(false)
+function clickMenu() {
+  isCollapse.value = !isCollapse.value
+}
 </script>
 
 <template>
-  <el-container>
-    <el-aside>
+  <main>
+    <div class="aside-button" :class="{ 'isMenu': isCollapse }">
+      <el-affix :offset="20">
+        <ui-icon @click="clickMenu">menu_open</ui-icon>
+      </el-affix>
+    </div>
+    <el-aside v-if="isCollapse">
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
           <el-dropdown>
@@ -35,20 +45,22 @@ function activeLogout() {
         </div>
         <el-menu-item v-for="route in blogRoutes" :key="route.name" :index="route.path">
           <ui-icon :size="18">{{ route.meta?.Icon }}</ui-icon>
-          {{ route.meta?.Menu }}
+          <span>{{ route.meta?.Menu }}</span>
         </el-menu-item>
       </el-menu>
       <el-backtop>
         <ui-icon>arrow_circle_up</ui-icon>
       </el-backtop>
     </el-aside>
-    <el-container>
-      <router-view />
-      <div class="footer-info">Q渣渣猪 © {{ dayjs().format('YYYY') }}</div>
-    </el-container>
-  </el-container>
+    <div class="footer-index">
+      <router-view v-slot="{ Component }" :class="{ 'main-content': isCollapse }">
+        <component :is="Component" :key="$route.name" />
+      </router-view>
+    </div>
+    <!-- <div class="footer-info">Q渣渣猪 © {{ dayjs().format('YYYY') }}</div> -->
+  </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "src/assets/scss/layout.scss";
 </style>

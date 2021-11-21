@@ -9,6 +9,13 @@ const initBlogList = () => ref<blogListModel[]>([])
 
 const blogList = initBlogList()
 
+defineProps({
+  isCollapse: {
+    type: Boolean,
+    default: false
+  }
+})
+
 const searchData = ref<searchListModel>({
   pageIndex: 1, //当前页
   pageSize: 10, //展示多少条数据
@@ -34,41 +41,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="header-img">
-    <el-image fit="cover" style="width: 100%;height: 100vh" src="src/assets/image/Sunflower2.jpg"></el-image>
-    <div class="title-button">
-      <el-button type="text">Q 渣渣猪</el-button>
-      <div class="text">秋天该很好 ｜ 没有烟 ｜ 总有花 ｜ 张国荣</div>
-      <el-image class="logo" src="/@/assets/image/Logo-white.png"></el-image>
+  <div class="content" :class="{ 'isMenu': isCollapse }">
+    <div class="header-img">
+      <el-image fit="fill" style="height: 100vh" src="/image/Sunflower-mobile.jpg"></el-image>
+      <div class="title-button" :class="{ 'isMenu': isCollapse }">
+        <ui-icon class="title">Q 渣渣猪</ui-icon>
+        <div class="text">秋天该很好｜没有烟｜总有花｜张国荣</div>
+        <el-image class="logo" src="/image/Logo-white.png"></el-image>
+      </div>
+      <ui-icon class="mouse-button">mouse</ui-icon>
     </div>
-  </div>
-  <div class="aside-button">
-    <ui-icon-button icon="menu_open" outlined></ui-icon-button>
-  </div>
-  <div v-for="blog in blogList" :key="blog.id">
-    <el-card class="box-card" shadow="never">
-      <template #header>
-        <div class="card-header">
-          <h1>{{ blog.title }}</h1>
-          <div class="created-time">
-            <ui-icon size="16">date_range</ui-icon>
-            {{ dayjs(blog.createdAt).format('YYYY/MM/DD') }}
+    
+    <div v-for="blog in blogList" :key="blog.id">
+      <el-card class="box-card" shadow="never">
+        <template #header>
+          <div class="card-header">
+            <h2>{{ blog.title }}</h2>
+            <div class="created-time">
+              <ui-icon size="16">date_range</ui-icon>
+              {{ dayjs(blog.createdAt).format('YYYY/MM/DD') }}
+            </div>
           </div>
-        </div>
-      </template>
-      <div>{{ blog.content }}</div>
-    </el-card>
-  </div>
-  <div class="footer">
-    <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
+        </template>
+        <div>{{ blog.content }}</div>
+      </el-card>
+    </div>
+    <div class="footer">
+      <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "./style/home.scss";
-.aside-button {
-  position: absolute;
-  top: 20px;
-  left: 120px;
-}
 </style>

@@ -1,32 +1,49 @@
+.main-content{
+  width: calc(100% - 80px);
+  position: absolute;
+  right: 0;
+}
+
 .header-img{
   .el-image{
     position: relative;
+    width: 100%;
+    float: right;
   }
   .title-button{
     position: absolute;
-    top: 20vh;
-    left: 16vw;
+    top: 120px;
+    left: 38px;
     color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    button{
+    align-items: flex-start;
+    .title{
       color: #fff;
-      font-size: 5em;
+      font-size: 2em;
+      font-weight: bold;
     }
     .text{
-      margin-top: 14px;
+      margin-top: 20px;
+      width: 200px;
+      font-size: 14px;
+      font-weight: bold;
     }
     .logo{
       width: 80px;
     }
   }
+  .mouse-button{
+    position: absolute;
+    top: 90vh;
+    left: 40px;
+    color: #ffb937;
+  }
 }
-
 .box-card{
   border: none;
-  margin-left: 50px;
-  width: 60%;
+  margin-left: 20px;
+  width: 95%;
   :deep(.el-card__header){
     border: none;
     .created-time{

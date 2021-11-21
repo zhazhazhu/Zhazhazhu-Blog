@@ -1,5 +1,6 @@
-.el-container {
+main {
   display: flex;
+  flex-direction: column;
   .logo{
     margin: 0 auto;
   }
@@ -10,7 +11,6 @@
     height: 100vh;
     z-index: 999;
   }
-
   .el-menu-vertical{
     height: 100vh;
     .el-menu-item {
@@ -20,7 +20,6 @@
       justify-content: center;
     }
   }
-
   .logo {
     height: 80px;
     display: flex;
@@ -28,21 +27,39 @@
     align-items: center;
     cursor: pointer;
   }
-
-  .el-container {
-    flex-direction: column;
-    width: calc(100vw - 80px);
-    height: 100%;
-    margin-left: 80px;
+  .footer-index {
     right: 0px;
     padding: 0;
-    .footer-info{
-      text-align: center;
-      line-height: 75px;
-      font-size: 14px;
-      height: 75px;
-
-      border-top: 1px solid rgb(216, 216, 216);
+  }
+  .footer-info{
+    bottom: 0;
+    width: 100%;
+    z-index: 1001;
+    text-align: center;
+    line-height: 75px;
+    font-size: 14px;
+    height: 75px;
+    background-color: #fff;
+    border-top: 1px solid rgb(216, 216, 216);
+    position: absolute;
+  }
+  .aside-button {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    z-index: 10;
+    i {
+      padding: 0px;
+      width: 40px;
+      height: 34px;
+      line-height: 34px;
+      background-color: rgba(121, 121, 121, 0.425);
+      border-radius: 4px;
     }
+  }
+  .aside-button.isMenu{
+    left: 100px;
   }
 }
