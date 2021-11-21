@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-LABEL name="zhazhazhu-blog"
+LABEL name="zhazhazhublog"
 
 LABEL version="0.0.1"
 
