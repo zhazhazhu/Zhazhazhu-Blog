@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:latest
 
 LABEL name="zhazhazhu-blog"
 
