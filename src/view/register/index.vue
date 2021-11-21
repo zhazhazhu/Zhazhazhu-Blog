@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import { ref } from 'vue';
 import { userInfoModel } from './types/index';
-import type { ElForm } from 'element-plus';
+import { ElForm, ElLoading } from 'element-plus';
 import { register } from '/@/api/user';
 import router from '/@/router';
 import myUpload from 'vue-image-crop-upload';
@@ -50,6 +50,11 @@ const uploadUrl = window.projectConfig.uploadAvatar()
 function actionRegister() {
   userFormRef.value?.validate(async (valid) => {
     if (valid) {
+      const loading = ElLoading.service({
+        lock: true,
+        text: 'Loading...',
+        background: 'rgba(0, 0, 0, 0.7)',
+      });
       const { userName, passWord, email, avatar, phoneNumber } = userInfo.value
       const dto = {
         userName,
@@ -64,8 +69,9 @@ function actionRegister() {
           message: `${message} 即将跳转登录页...`
         })
         setTimeout(() => {
+          loading.close()
           router.push('/login')
-        }, 3000)
+        }, 2000)
         return true
       } else {
         ElMessage.error({

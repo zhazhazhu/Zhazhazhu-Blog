@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { login } from '../../api/user';
 import { userModel } from './types/index';
 import { useUserStoreWithOut } from '/@/store/modules/user';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage } from 'element-plus';
 import router from '/@/router';
 
 const user = ref<userModel>({
@@ -14,10 +14,16 @@ const user = ref<userModel>({
 const userStore = useUserStoreWithOut()
 
 async function signIn() {
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading...',
+    background: 'rgba(0, 0, 0, 0.7)',
+  });
   const { code, data } = await login(user.value)
   if (code === 1) {
     const { token, expiresIn } = data
     userStore.login(token, Date.now() + (expiresIn * 1000))
+    loading.close()
     ElMessage({
       message: 'LOGIN SUCCESS...'
     })
