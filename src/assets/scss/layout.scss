@@ -1,6 +1,8 @@
 main {
-  display: flex;
-  flex-direction: column;
+  .main-content{
+    transition: all 0.3s ease-in-out;
+    transform: translate(80px);
+  }
   .logo{
     margin: 0 auto;
   }

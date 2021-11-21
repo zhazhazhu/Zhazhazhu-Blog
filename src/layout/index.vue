@@ -25,13 +25,13 @@ function clickMenu() {
 </script>
 
 <template>
-  <main>
+  <main class="zuida">
     <div class="aside-button" :class="{ 'isMenu': isCollapse }">
       <el-affix :offset="20">
         <ui-icon @click="clickMenu">menu_open</ui-icon>
       </el-affix>
     </div>
-    <el-aside v-if="isCollapse">
+    <el-aside v-show="isCollapse">
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
           <el-dropdown>
@@ -52,11 +52,11 @@ function clickMenu() {
         <ui-icon>arrow_circle_up</ui-icon>
       </el-backtop>
     </el-aside>
-    <div class="footer-index">
-      <router-view v-slot="{ Component }" :class="{ 'main-content': isCollapse }">
+    <main class="footer-index" :class="{ 'main-content': isCollapse }">
+      <router-view v-slot="{ Component }">
         <component :is="Component" :key="$route.name" />
       </router-view>
-    </div>
+    </main>
     <!-- <div class="footer-info">Q渣渣猪 © {{ dayjs().format('YYYY') }}</div> -->
   </main>
 </template>
