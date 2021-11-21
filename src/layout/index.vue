@@ -11,6 +11,7 @@ const avatar = computed(() => {
   return head + userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 })
 
+const userInfo = userStore.getUserInfo
 
 const route = useRoute()
 
@@ -31,8 +32,8 @@ function closeMenu() {
 
 <template>
   <main>
-    <div class="aside-button" :class="{ 'isMenu': isCollapse }">
-      <el-affix :offset="20">
+    <div>
+      <el-affix :offset="20" class="aside-button" :class="{ 'isMenu': isCollapse }">
         <ui-icon @click="clickMenu">menu_open</ui-icon>
       </el-affix>
     </div>
@@ -41,6 +42,7 @@ function closeMenu() {
         <div class="logo">
           <el-dropdown>
             <el-avatar shape="square" :size="40" :src="avatar"></el-avatar>
+            <div class="user-name">{{ userInfo?.userName }}</div>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item @click="activeLogout">退出登录</el-dropdown-item>

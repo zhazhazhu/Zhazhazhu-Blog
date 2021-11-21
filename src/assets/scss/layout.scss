@@ -31,6 +31,14 @@ main {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    .user-name{
+      margin-top: 4px;
+      width:50px;
+      overflow:hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow:ellipsis;
+    }
   }
   .footer-index {
     right: 0px;
@@ -54,22 +62,23 @@ main {
     position: absolute;
   }
   .aside-button {
-    position: absolute;
-    top: 20px;
-    left: 30px;
+    height: 0 !important;
     color: rgb(255, 255, 255);
-    text-align: center;
-    z-index: 10;
+    z-index: 90;
+    // margin-left: 30px;
+    transition: all 0.3s ease-in-out;
     i {
       padding: 0px;
       width: 40px;
       height: 34px;
       line-height: 34px;
+      text-align: center;
       background-color: rgba(121, 121, 121, 0.425);
       border-radius: 4px;
     }
   }
   .aside-button.isMenu{
-    left: 100px;
+    margin-left: 80px;
+    transition: all 0.3s ease-in-out;
   }
 }
