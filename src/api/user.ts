@@ -2,9 +2,9 @@ import { defHttp } from '../util/http/index';
 import { userModel, userDataModel } from '../view/login/types/index';
 
 enum API {
-  Login = '/login',
+  Login = '/api/login',
   UserInfo = '/userInfo',
-  Register = '/register'
+  Register = '/api/register'
 }
 
 export function login(user: userModel) {
