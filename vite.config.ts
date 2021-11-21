@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import VitePluginElementPlus from 'vite-plugin-element-plus'
+import viteCompression from 'vite-plugin-compression'
+import viteImagemin from 'vite-plugin-imagemin';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -14,6 +16,35 @@ export default defineConfig(({ mode }) => {
         // 的文档注释
         // useSource: true
         format: mode === 'development' ? 'esm' : 'cjs',
+      }),
+      viteCompression(),
+      //图片压缩
+      viteImagemin({
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false,
+        },
+        optipng: {
+          optimizationLevel: 7,
+        },
+        mozjpeg: {
+          quality: 20,
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox',
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false,
+            },
+          ],
+        },
       }),
     ],
     resolve: {
@@ -35,6 +66,17 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       port: 3200
-    }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return id.toString().split('node_modules/')[1].split('/')[0].toString()
+            }
+          },
+        },
+      },
+    },
   }
 })
