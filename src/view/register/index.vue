@@ -68,16 +68,14 @@ function actionRegister() {
         ElMessage({
           message: `${message} 即将跳转登录页...`
         })
-        setTimeout(() => {
-          router.push('/login')
-        }, 2000)
-        return true
+        router.push('/login')
       } else {
         ElMessage.error({
           message
         })
       }
       loading.close()
+      return true
     }
     return false
   })
