@@ -64,7 +64,7 @@ function actionRegister() {
           message: `${message} 即将跳转登录页...`
         })
         setTimeout(() => {
-          router.go(-1)
+          router.push('/login')
         }, 3000)
         return true
       } else {
@@ -184,4 +184,5 @@ function upload() {
 
 <style lang="scss" scoped>
 @import "./style/index.scss";
+@import "./style/upload.scss";
 </style>

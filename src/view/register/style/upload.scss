@@ -1,0 +1,57 @@
+@media screen and (max-width: 500px) {
+  .vue-image-crop-upload{
+    :deep(.vicp-wrap){
+      width: 80vw;
+      min-height: 450px;
+      max-height: 65vh;
+      .vicp-crop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .vicp-step2{
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .vicp-preview{
+        display: flex;
+        justify-content: space-around;
+        width: 200px;
+        height: 100px !important;
+        .vicp-preview-item{
+          width: 70px !important;
+          height: 70px !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          margin-left: 10px;
+          img{
+            width: 70px !important;
+            height: 70px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          span{
+            bottom: -30px !important;
+            font-size: 12px !important;
+            font-weight: bold;
+          }
+        }
+      }
+      .vicp-operate{
+        position: initial !important;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        a{
+          color: #6200ee;
+          border: 1px solid #6200ee;
+        }
+        .vicp-operate-btn{
+          background-color: #6200ee;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
