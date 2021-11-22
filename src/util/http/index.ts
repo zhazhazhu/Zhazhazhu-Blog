@@ -4,6 +4,7 @@ import { CreateAxiosOptions } from './types'
 import { deepMerge } from '../../enums/httpEnum';
 import { getLocalToken, getLocalExpiresIn, isExpiresIn } from '../auth/index';
 import { useUserStoreWithOut } from '../../store/modules/user';
+import { ElMessage } from 'element-plus';
 
 const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxiosOptions) => {
   const { status, data, config, statusText } = response
@@ -16,9 +17,14 @@ const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxios
     if (requestOptions?.isTransformResponse) {
       return data
     }
-  } else {
+  } else if (status === 401) {
+    const userStore = useUserStoreWithOut()
+    userStore.logout()
+    return Promise.reject(ElMessage.error({message:'登录超时, 请重新登录...'}))
+  }
+  else {
     const errMsg = `${config.url} 后端接口 ${status} 异常：${statusText}`
-    return Promise.reject(Error(errMsg))
+    return Promise.reject(ElMessage.error({message:errMsg}))
   }
 }
 
