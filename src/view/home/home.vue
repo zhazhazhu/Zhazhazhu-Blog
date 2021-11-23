@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { getBlogList } from '../../api/blogs';
 import { searchListModel } from '../../api/types/blogsModel';
 import { blogListModel } from './types/homeModel';
+import router from '/@/router';
 
 const initBlogList = () => ref<blogListModel[]>([])
 
@@ -34,6 +35,14 @@ async function getBlog() {
   }
 }
 
+function viewBlog(blog) {
+  router.push({
+    path: 'blog',
+    name: 'Blog',
+    params: { id: blog.id }
+  })
+}
+
 onMounted(() => {
   getBlog()
 })
@@ -51,7 +60,7 @@ onMounted(() => {
       </div>
       <ui-icon class="mouse-button">mouse</ui-icon>
     </div>
-    
+
     <div v-for="blog in blogList" :key="blog.id">
       <el-card class="box-card" shadow="never">
         <template #header>
@@ -64,6 +73,7 @@ onMounted(() => {
           </div>
         </template>
         <div>{{ blog.content }}</div>
+        <el-button type="text" @click="viewBlog(blog)">阅读全文...</el-button>
       </el-card>
     </div>
     <div class="footer">
