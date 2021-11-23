@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import blogRoutes from './model/blog';
+import MenuRoutes from './model';
 import loginRoutes from './model/login';
 
 const routes: RouteRecordRaw[] = [
@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
     name: 'TabBar',
     component: () => import('/@/layout/index.vue'),
     redirect: 'login',
-    children: [...blogRoutes]
+    children: [...MenuRoutes]
   },
   ...loginRoutes
 ]

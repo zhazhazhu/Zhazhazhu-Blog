@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUserStoreWithOut } from '../store/modules/user';
-import blogRoutes from '../router/model/blog';
+import MenuRoutes from '../router/model';
 
 const userStore = useUserStoreWithOut()
 const avatar = computed(() => {
@@ -50,7 +50,7 @@ function closeMenu() {
             </template>
           </el-dropdown>
         </div>
-        <el-menu-item v-for="route in blogRoutes" :key="route.name" :index="route.path">
+        <el-menu-item v-for="route in MenuRoutes" :key="route.name" :index="route.path">
           <ui-icon :size="18">{{ route.meta?.Icon }}</ui-icon>
           <span>{{ route.meta?.Menu }}</span>
         </el-menu-item>

@@ -51,6 +51,16 @@
       }
     }
   }
+  :deep(.el-card__body){
+    font-size: 15px;
+    padding: 0px 20px;
+    div{
+      max-height: 106px;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+  }
 }
 .footer{
   margin: 20px 50px 50px 50px;
