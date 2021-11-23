@@ -31,10 +31,11 @@ function signIn() {
       const { code, data, message } = await login(user.value)
       if (code === 1) {
         const { token, expiresIn } = data
-        userStore.login(token, Date.now() + (expiresIn * 1000))
+        await userStore.login(token, Date.now() + (expiresIn * 1000))
         ElMessage({
           message: 'LOGIN SUCCESS...'
         })
+        router.push('/home')
       } else {
         ElMessage.error({
           message

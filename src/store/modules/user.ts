@@ -56,8 +56,7 @@ export const useUserStore = defineStore({
     async getActiveUserInfo() {
       const { code, data } = await getUserInfo()
       if (code === 1) {
-        await this.setUserInfo(data)
-        router.push('/home')
+        return await this.setUserInfo(data)
       }
     },
     async logout() {
