@@ -72,7 +72,7 @@ onMounted(() => {
             </div>
           </div>
         </template>
-        <div>{{ blog.content }}</div>
+        <div>{{ blog.abstract }}</div>
         <el-button type="text" @click="viewBlog(blog)">阅读全文...</el-button>
       </el-card>
     </div>
