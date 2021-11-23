@@ -1,0 +1,66 @@
+$white:rgb(68, 68, 68);
+
+@media screen and (max-width: 500px) {
+  header{
+    margin-left: 40px;
+    h2{
+      margin-bottom: 4px;
+    }
+    .created-time{
+      display: flex;
+      align-items: center;
+      color: rgb(141, 141, 141);
+      font-size: 14px;
+      .material-icons{
+        font-size: 14px;
+        margin-right: 6px;
+      }
+    }
+  }
+  main{
+    max-width: 95%;
+    margin: 14px 0;
+    .detail-content{
+      min-height: 130px;
+      position: relative;
+      font-size: 14px;
+      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+      letter-spacing: 1px;
+      color: $white;
+      .button{
+        position: absolute;
+        bottom: 0;
+        width: 96%;
+        display: flex;
+        justify-content: space-between;
+        button{
+          color: #464646;
+        }
+      }
+    }
+    .comment{
+      margin-right: 16px;
+    }
+  }
+  
+}
+footer{
+  *{
+    margin-bottom: 4px;
+  }
+  width: 92%;
+  .text{
+    display: flex;
+    *{
+      width: 30px;
+    }
+  }
+  .comment-input{
+    display: flex;
+    justify-content: space-between;
+    .el-textarea{
+      width: 85%;
+    }
+  }
+}
