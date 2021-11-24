@@ -66,8 +66,10 @@ main {
     height: 0 !important;
     color: rgb(255, 255, 255);
     z-index: 90;
-    // margin-left: 30px;
+    position: fixed;
     transition: all 0.3s ease-in-out;
+    top: 40px;
+    left: -10px;
     i {
       padding: 0px;
       width: 40px;

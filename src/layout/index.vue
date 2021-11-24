@@ -33,9 +33,9 @@ function closeMenu() {
 <template>
   <main>
     <div>
-      <el-affix :offset="20" class="aside-button" :class="{ 'isMenu': isCollapse }">
+      <ui-button :offset="20" class="aside-button" :class="{ 'isMenu': isCollapse }">
         <ui-icon @click="clickMenu">menu_open</ui-icon>
-      </el-affix>
+      </ui-button>
     </div>
     <el-aside :class="{ 'on': isCollapse }">
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
