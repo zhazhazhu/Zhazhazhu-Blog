@@ -23,6 +23,9 @@ const elList = [
   ElInput
 ]
 function setupElement(app: App) {
+  app.config.globalProperties.$ELEMENT = {
+    size: 'small', zIndex: 3000
+  }
   elList.forEach((item) => {
     app.use(item)
   })
