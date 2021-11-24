@@ -1,4 +1,4 @@
-const hostname = 'http://110.42.131.59'
+const hostname = 'http://www.qzzhu.cn'
 
 
 const ports = {
