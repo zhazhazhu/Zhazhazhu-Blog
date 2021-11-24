@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import VitePluginElementPlus from 'vite-plugin-element-plus'
 import viteCompression from 'vite-plugin-compression'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import viteImagemin from 'vite-plugin-imagemin';
 
 // https://vitejs.dev/config/
@@ -17,8 +19,11 @@ export default defineConfig(({ mode }) => {
         // useSource: true
         format: mode === 'development' ? 'esm' : 'cjs',
       }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
       viteCompression(),
-      //图片压缩
+      // 图片压缩
       viteImagemin({
         gifsicle: {
           optimizationLevel: 7,
