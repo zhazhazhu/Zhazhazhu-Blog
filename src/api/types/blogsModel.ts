@@ -6,3 +6,11 @@ export interface searchListModel {
   sortType: string;
   totalCount: number; //总共多少条
 }
+export interface commentModel {
+  blogId?: string;
+  userId?: string;
+  userName?: string;
+  avatar?: string;
+  createdAt?: number | null;
+  content?: string;
+}

@@ -81,5 +81,6 @@ declare module 'axios' {
     _config: CreateAxiosOptions
     get(...key = T): Promise<Result>
     post(...key = T): Promise<Result>
+    delete(...key = T): Promise<Result>
   }
 }

@@ -6,6 +6,7 @@ import UiDivider from 'balm-ui/components/divider';
 import UiTextfield from 'balm-ui/components/textfield';
 import UiImageList from 'balm-ui/components/image-list';
 import UiIconButton from 'balm-ui/components/icon-button';
+// import UiEditor from 'balm-ui/components/editor';
 
 const elList = [
   UiButton,
@@ -13,7 +14,8 @@ const elList = [
   UiDivider,
   UiTextfield,
   UiImageList,
-  UiIconButton
+  UiIconButton,
+  // UiEditor
 ]
 
 function setupBalm(app: App) {
