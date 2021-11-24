@@ -6,19 +6,30 @@
   --bg-color1: #f4f4f4;
   --font-color: #121416;
 }
+
+$onBorder: #dcdfe6;
+$twoBorder: #e4e7ed;
+$threeBorder: #ebeef5;
+$forBorder: #f2f6fc;
+
+$onText: #303133;
+$twoText: #606266;
+$threeText: #909399;
+$forText: #c0c4cc;
+
 body {
   background-color: var(--bg-color1);
   color: var(--font-color);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
 }
 a {
   text-decoration: none;
 }
-.p-4{
+.p-4 {
   min-height: calc(100vh - 76px);
   width: 100vw;
   margin: 0 auto;

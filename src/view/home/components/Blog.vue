@@ -8,6 +8,7 @@ import { useUserStoreWithOut } from '/@/store/modules/user';
 import { saveCommentById } from '/@/api/blogs';
 import { deleteCommentById } from '/@/api/blogs';
 import { ElMessage } from 'element-plus/lib';
+import { useConfirm } from 'balm-ui/plugins/confirm';
 
 const userStore = useUserStoreWithOut()
 const userInfo = userStore.getUserInfo
@@ -49,17 +50,33 @@ async function saveComment(blogId) {
     ElMessage.success({
       message
     })
+    commentInfo.value = ''
     init()
   }
 }
+
+const confirm = useConfirm()
 async function deleteComment(id) {
-  const { code, message } = await deleteCommentById(id)
-  if(code === 1){
-    ElMessage.error({
-      message
-    })
-    init()
+  const result = await confirm({
+    message: '确认删除吗？',
+    state: 'help',
+    acceptText: '删除',
+    cancelText: '取消'
+  })
+  if (result) {
+    const { code, message } = await deleteCommentById(id)
+    if (code === 1) {
+      ElMessage.error({
+        message
+      })
+      init()
+    }
   }
+}
+
+const uploadUrl = window.projectConfig.hosts.avatar
+function handleAvatar(avatar: string) {
+  return uploadUrl + avatar
 }
 
 const commentInfo = ref('')
@@ -92,7 +109,7 @@ const commentInfo = ref('')
         <div style="color: #7d7d7d;">{{ blogDetail?.commentList.length }}</div>
       </div>
       <div class="comment-input">
-        <el-avatar :size="40" :src="avatar"></el-avatar>
+        <el-avatar :size="36" :src="avatar"></el-avatar>
         <el-input
           type="textarea"
           placeholder="说点什么..."
@@ -106,10 +123,16 @@ const commentInfo = ref('')
       <div style="text-align: right;">
         <el-button type="primary" size="mini" @click="saveComment(blogDetail?.id)">评论</el-button>
       </div>
-      <div v-for="comment in blogDetail?.commentList" :key="comment.id">
-        <el-avatar :size="40" :src="comment.avatar"></el-avatar>
-        <div>{{ comment.content }}</div>
-        <div v-if="comment.userId === userInfo?.id">
+      <div v-for="comment in blogDetail?.commentList" :key="comment.id" class="comment-model">
+        <el-avatar :size="36" :src="handleAvatar(comment.avatar)"></el-avatar>
+        <div class="content-info">
+          <div class="user">
+            {{ comment.userName }}
+            {{ dayjs(comment.createdAt * 1000).format('MM/DD') }}
+          </div>
+          <div class="content">{{ comment.content }}</div>
+        </div>
+        <div v-if="comment.userId === userInfo?.id" style="line-height: 68px; height: 48px;">
           <el-button type="text" size="mini" @click="deleteComment(comment.id)">删除</el-button>
         </div>
       </div>
