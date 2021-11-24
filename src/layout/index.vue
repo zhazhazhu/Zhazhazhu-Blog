@@ -40,7 +40,7 @@ function closeMenu() {
     <el-aside :class="{ 'on': isCollapse }">
       <el-menu :default-active="route.fullPath" class="el-menu-vertical" router>
         <div class="logo">
-          <el-dropdown style="display: flex;flex-direction: column;align-items: center">
+          <el-dropdown style="text-align: center;">
             <el-avatar shape="square" :size="35" :src="avatar"></el-avatar>
             <div class="user-name">{{ userInfo?.userName }}</div>
             <template #dropdown>
