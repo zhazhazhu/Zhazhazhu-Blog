@@ -76,15 +76,17 @@ export default defineConfig(({ mode }) => {
       }
     },
     build: {
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return id.toString().split('node_modules/')[1].split('/')[0].toString()
-            }
-          },
+      target: 'es2015',
+      outDir: 'dist',
+      terserOptions: {
+        compress: {
+          keep_infinity: true,
+          // Used to delete console in production environment
         },
       },
+      // Turning off brotliSize display can slightly reduce packaging time
+      brotliSize: false,
+      chunkSizeWarningLimit: 2000,
     },
   }
 })
