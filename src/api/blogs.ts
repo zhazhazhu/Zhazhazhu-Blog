@@ -15,7 +15,9 @@ export function getBlogList(search: searchListModel) {
 }
 
 export function getUploadPhoto(id?: string) {
-  return defHttp.get(API.GetUploadPhoto, id)
+  return defHttp.get(API.GetUploadPhoto, {
+    params: { id }
+  })
 }
 
 export function getBlogData(id: string) {
@@ -37,7 +39,9 @@ export function deleteCommentById(id: string) {
     params: { id }
   })
 }
-
+/**
+ * @return 发布博客
+ */
 export function saveBlog(dto: blogModel) {
   return defHttp.post(API.SaveBlog, dto)
 }

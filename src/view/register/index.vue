@@ -90,12 +90,13 @@ const userFormRef = ref<InstanceType<typeof ElForm>>()
 const show = ref(false)
 const imgDataUrl = ref<FormData>()
 function cropSuccess(url, field) {
+  uploadAvatar.value = url
   const blob = convertBase64UrlToBlob(url)
   const formData = new FormData()
   formData.append('File', blob, Date.now() + field)
   imgDataUrl.value = formData
 }
-function cropUploadSuccess(res) {
+async function cropUploadSuccess(res, xxx) {
   const { code, data, message } = res
   if (code === 1) {
     userInfo.value.avatar = data[0]
@@ -113,6 +114,8 @@ function cropUploadFail(status, field) {
 function upload() {
   show.value = true
 }
+
+const uploadAvatar = ref('')
 </script>
 
 <template>
@@ -130,7 +133,8 @@ function upload() {
   <!-- <el-image src="/@/assets/image/Login.png" class="img"></el-image> -->
   <main class="content">
     <header>
-      <el-image src="/image/Logo.png"></el-image>
+      <el-image v-if="!uploadAvatar" src="/image/Logo.png"></el-image>
+      <el-image v-else class="avatar-style" :src="uploadAvatar"></el-image>
     </header>
     <div class="user">
       <el-form ref="userFormRef" :model="userInfo" :rules="UserRules">
@@ -176,7 +180,6 @@ function upload() {
         </el-form-item>
       </el-form>
       <ui-button @click="upload" :type="1" style="margin-bottom: 24px;">上传头像</ui-button>
-
       <ui-button @click="actionRegister" :type="2">注 册</ui-button>
 
       <div class="button-bottom">
