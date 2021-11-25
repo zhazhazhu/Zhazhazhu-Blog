@@ -136,7 +136,7 @@ function upload() {
       <el-form ref="userFormRef" :model="userInfo" :rules="UserRules">
         <el-form-item prop="userName">
           <ui-textfield class="input" required v-model="userInfo.userName">
-            UserName
+            用户名
             <template #after="{ iconClass }">
               <span :class="iconClass">
                 <ui-icon>person</ui-icon>
@@ -146,7 +146,7 @@ function upload() {
         </el-form-item>
         <el-form-item prop="passWord">
           <ui-textfield inputType="password" required class="input" v-model="userInfo.passWord">
-            PassWord
+            密码
             <template #after="{ iconClass }">
               <span :class="iconClass">
                 <ui-icon>vpn_key</ui-icon>
@@ -156,7 +156,7 @@ function upload() {
         </el-form-item>
         <el-form-item prop="checkPass">
           <ui-textfield inputType="password" required class="input" v-model="userInfo.checkPass">
-            PassWord
+            确认密码
             <template #after="{ iconClass }">
               <span :class="iconClass">
                 <ui-icon>vpn_key</ui-icon>
@@ -166,7 +166,7 @@ function upload() {
         </el-form-item>
         <el-form-item prop="phoneNumber">
           <ui-textfield required class="input" v-model="userInfo.phoneNumber">
-            Phone
+            手机号
             <template #after="{ iconClass }">
               <span :class="iconClass">
                 <ui-icon>smartphone</ui-icon>
