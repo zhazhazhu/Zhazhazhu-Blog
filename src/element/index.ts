@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import { ElContainer, ElCarousel, ElImage, ElMenu, ElAside, ElMain, ElCard, ElPagination, ElBacktop, ElButton, ElUpload, ElMessage, ElForm, ElFormItem, ElAvatar, ElDropdown, ElDropdownMenu, ElDropdownItem, ElInput } from 'element-plus'
+import { ElContainer, ElCarousel, ElImage, ElMenu, ElAside, ElMain, ElCard, ElPagination, ElBacktop, ElButton, ElUpload, ElMessage, ElForm, ElFormItem, ElAvatar, ElDropdown, ElDropdownMenu, ElDropdownItem, ElInput, ElRow, ElCol } from 'element-plus'
 
 const elList = [
   ElCarousel,
@@ -20,7 +20,9 @@ const elList = [
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-  ElInput
+  ElInput,
+  ElRow,
+  ElCol
 ]
 function setupElement(app: App) {
   app.config.globalProperties.$ELEMENT = {

@@ -1,0 +1,33 @@
+header {
+  width: 100%;
+  height: 66px;
+  line-height: 66px;
+  position: fixed;
+  top: 0;
+  .text{
+    text-align: center;
+  }
+}
+:deep(.mdc-editor-container) {
+  height: calc(100vh - 80px);
+  margin-top: 60px;
+  .ql-toolbar {
+    span {
+      margin-right: 5px;
+    }
+  }
+  .mdc-editor-content {
+    height: 80vh;
+    * {
+      border: none;
+    }
+  }
+}
+.dialog {
+  :deep(.el-form-item) {
+    margin-bottom: 9px;
+    .el-form-item__label {
+      padding-bottom: 4px;
+    }
+  }
+}

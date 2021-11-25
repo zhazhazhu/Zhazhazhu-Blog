@@ -14,3 +14,12 @@ export interface commentModel {
   createdAt?: number | null;
   content?: string;
 }
+
+export interface blogModel {
+  id?: string;
+  title: string;
+  abstract: string;
+  content: string;
+  author: string;
+  createdAt?: string;
+}

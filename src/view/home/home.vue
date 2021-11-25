@@ -43,6 +43,10 @@ function viewBlog(blog) {
   })
 }
 
+function whiteBlog() {
+  router.push('/writeBlog')
+}
+
 onMounted(() => {
   getBlog()
 })
@@ -51,6 +55,9 @@ onMounted(() => {
 
 <template>
   <div class="content" :class="{ 'isMenu': isCollapse }">
+    <ui-button :offset="20" class="write-blog" @click="whiteBlog">
+      <ui-icon>drive_file_rename_outline</ui-icon>
+    </ui-button>
     <div class="header-img">
       <el-image fit="fill" style="height: 100vh" src="/image/Sunflower-mobile.jpg"></el-image>
       <div class="title-button" :class="{ 'isMenu': isCollapse }">
