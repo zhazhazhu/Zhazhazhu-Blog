@@ -6,6 +6,8 @@ import { getLocalToken, getLocalExpiresIn, isExpiresIn } from '../auth/index';
 import { useUserStoreWithOut } from '../../store/modules/user';
 import { ElMessage } from 'element-plus';
 
+const pathMap = ['/api/login', '/api/register', '/api/Form/UploadFiles', '/api/GithubLogin']
+
 const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxiosOptions) => {
   const { status, data, config, statusText } = response
   const { requestOptions } = createAxiosOptions
@@ -71,7 +73,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
 
   axiosInstance.interceptors.request.use(
     (config: CreateAxiosOptions) => {
-      if (config.headers && config.url !== '/api/GithubLogin') {
+      if (config.headers && !pathMap.includes(config?.url || '')) {
         config.headers['Authorization'] = 'Bearer ' + getLocalToken()
       }
       axiosInstance._config = config
