@@ -20,11 +20,11 @@ const handleResponse = (response: AxiosResponse, createAxiosOptions: CreateAxios
   } else if (status === 401) {
     const userStore = useUserStoreWithOut()
     userStore.logout()
-    return Promise.reject(ElMessage.error({message:'登录超时, 请重新登录...'}))
+    return Promise.reject(ElMessage.error({ message: '登录超时, 请重新登录...' }))
   }
   else {
     const errMsg = `${config.url} 后端接口 ${status} 异常：${statusText}`
-    return Promise.reject(ElMessage.error({message:errMsg}))
+    return Promise.reject(ElMessage.error({ message: errMsg }))
   }
 }
 
@@ -71,7 +71,7 @@ export const createAxios = (opts?: CreateAxiosOptions) => {
 
   axiosInstance.interceptors.request.use(
     (config: CreateAxiosOptions) => {
-      if (config.headers) {
+      if (config.headers && config.url !== '/api/GithubLogin') {
         config.headers['Authorization'] = 'Bearer ' + getLocalToken()
       }
       axiosInstance._config = config

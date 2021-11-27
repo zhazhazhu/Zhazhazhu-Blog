@@ -1,37 +1,46 @@
-.content{
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 63%;
   left: 50%;
-  transform: translate(-50%,-70%);
-  header{
+  transform: translate(-50%, -70%);
+  header {
     margin-bottom: 30px;
-    .el-image{
+    .el-image {
       width: 100px;
     }
   }
-  .user{
+  .user {
     display: flex;
     flex-direction: column;
     width: 300px;
-    .input{
+    .input {
       width: 100%;
       height: 50px;
       margin-bottom: 10px;
     }
   }
-  .button-bottom{
+  .button-bottom {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-    .mdc-button{
+    .mdc-button {
       color: rgb(107, 107, 107);
     }
   }
+  .other-login {
+    text-align: center;
+    margin-top: 60px;
+    .text {
+      font-size: 13px;
+      color: $twoText;
+      margin-top: 10px;
+    }
+  }
 }
-.img{
+.img {
   position: relative;
   width: 100%;
   height: 100vh;

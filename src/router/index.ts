@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import MenuRoutes from './model';
 import loginRoutes from './model/login';
 import BlogRoutes from './model/blog';
+import githubRoutes from './model/github';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,6 +13,7 @@ const routes: RouteRecordRaw[] = [
     children: [...MenuRoutes, ...BlogRoutes]
   },
   ...loginRoutes,
+  ...githubRoutes
 ]
 
 const router = createRouter({

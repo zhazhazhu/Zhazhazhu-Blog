@@ -49,6 +49,11 @@ function signIn() {
   })
 }
 
+const client_id = 'Iv1.a3ade557f047dac6'
+function loginGithub() {
+  window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3200/github/callback`
+}
+
 function goRegister() {
   router.push('/register')
 }
@@ -93,6 +98,12 @@ function goRegister() {
       <div class="button-bottom">
         <ui-button @click="goRegister">注册</ui-button>
         <ui-button>忘记密码?</ui-button>
+      </div>
+      <div class="other-login">
+        <div>
+          <span class="iconfont icon-github" @click="loginGithub"></span>
+        </div>
+        <div class="text">第三方登录</div>
       </div>
     </div>
   </main>
