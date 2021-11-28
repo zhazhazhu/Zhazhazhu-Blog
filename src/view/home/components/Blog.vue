@@ -93,7 +93,7 @@ const commentInfo = ref('')
     </header>
     <main>
       <div class="detail-content">
-        <div v-html="blogDetail?.content"></div>
+        <div v-html="blogDetail?.content" style="height: 85%;"></div>
         <div class="button">
           <el-button type="text">前一篇</el-button>
           <el-button type="text">后一篇</el-button>
@@ -104,10 +104,6 @@ const commentInfo = ref('')
       </div>
     </main>
     <footer>
-      <div class="text">
-        <ui-icon style="color: #7d7d7d;">forum</ui-icon>
-        <div style="color: #7d7d7d;">{{ blogDetail?.commentList.length }}</div>
-      </div>
       <div class="comment-input">
         <el-avatar :size="36" :src="avatar"></el-avatar>
         <el-input
@@ -126,10 +122,8 @@ const commentInfo = ref('')
       <div v-for="comment in blogDetail?.commentList" :key="comment.id" class="comment-model">
         <el-avatar :size="36" :src="handleAvatar(comment.avatar)"></el-avatar>
         <div class="content-info">
-          <div class="user">
-            {{ comment.userName }}
-            {{ dayjs(comment.createdAt * 1000).format('MM/DD') }}
-          </div>
+          <div class="user">{{ comment.userName }}</div>
+          <div class="time">{{ dayjs(comment.createdAt * 1000).format('MM/DD') }}</div>
           <div class="content">{{ comment.content }}</div>
         </div>
         <div v-if="comment.userId === userInfo?.id" style="line-height: 68px; height: 48px;">

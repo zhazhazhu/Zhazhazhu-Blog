@@ -23,16 +23,16 @@ $white1: #ebeef5;
     margin: 14px 0;
     .detail-content {
       min-height: 130px;
-      position: relative;
       font-size: 14px;
       font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
         sans-serif;
       letter-spacing: 1px;
       color: $white;
+      display: flex;
+      flex-direction: column;
       .button {
-        position: absolute;
-        bottom: 0;
         width: 96%;
+        height: 15%;
         display: flex;
         justify-content: space-between;
         button {
@@ -72,13 +72,17 @@ footer {
       margin-left: 10px;
       width: calc(100% - 70px);
       .user {
-        color: $twoText;
+        color: $onText;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .time{
+        color: $threeText;
         font-size: 14px;
-        margin-bottom: 12px;
       }
       .content{
-        font-size: 14px;
-        color: $twoText;
+        color: $onText;
+        font-size: 12px;
       }
     }
   }
