@@ -23,3 +23,10 @@ export interface blogModel {
   author: string;
   createdAt?: string;
 }
+
+export interface photoModel {
+  id: string | null;
+  title: string | null;
+  imgUrl: string;
+  userId: string;
+}

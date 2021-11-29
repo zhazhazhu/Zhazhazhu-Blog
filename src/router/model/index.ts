@@ -22,12 +22,32 @@ const MenuRoutes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/fun',
+    name: 'Fun',
+    component: () => import('/@/view/photo/index.vue'),
+    meta: {
+      Icon: 'data_saver_off',
+      Menu: '趣事',
+      keepAlive: true
+    }
+  },
+  {
     path: '/photo',
     name: 'Photo',
     component: () => import('/@/view/photo/index.vue'),
     meta: {
       Icon: 'crop_original',
       Menu: '相册',
+      keepAlive: true
+    }
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import('/@/view/photo/index.vue'),
+    meta: {
+      Icon: 'scatter_plot',
+      Menu: '我的',
       keepAlive: true
     }
   }

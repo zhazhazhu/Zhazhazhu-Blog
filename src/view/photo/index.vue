@@ -1,17 +1,27 @@
 <script lang='ts' setup>
 import { onMounted, ref } from 'vue';
-import { getUploadPhoto } from '/@/api/blogs';
+import { getPhotoByUserId } from '/@/api/blogs';
+import router from '/@/router';
+import { useUserStoreWithOut } from '/@/store/modules/user';
+import { photoListModel } from './types/index';
 
-const photoList = ref<string[]>([])
+const userStore = useUserStoreWithOut()
+const userId = userStore.getUserInfo?.id || ''
+
+const photoList = ref<photoListModel[]>([])
 
 const labelsType = ref(1)
+
+function showDialog() {
+  router.push('/uploadPhoto')
+}
 
 onMounted(() => {
   init()
 })
 
 async function init() {
-  const { code, data } = await getUploadPhoto()
+  const { code, data } = await getPhotoByUserId(userId)
   if (code === 1) {
     photoList.value = data
   }
@@ -20,18 +30,19 @@ async function init() {
 
 <template>
   <div class="p-4">
+    <ui-icon class="upload-button" @click="showDialog">file_upload</ui-icon>
     <header>
       <h2>相册</h2>
     </header>
     <ui-image-list type="masonry" :text-protection="labelsType === 2" class="demo">
       <ui-image-item
         class="image-item"
-        v-for="(item, index) in photoList"
-        :key="index"
-        :image="item"
+        v-for="item in photoList"
+        :key="item.id"
+        :image="item.imgUrl"
       >
         <ui-image-text v-if="labelsType">
-          Text label
+          {{item.title}}
           <template #action>
             <ui-icon-button icon="favorite_border"></ui-icon-button>
           </template>
@@ -42,5 +53,5 @@ async function init() {
 </template>
 
 <style lang="scss" scoped>
-@import './style/index.scss'
+@import "./style/index.scss";
 </style>

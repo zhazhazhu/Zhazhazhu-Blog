@@ -1,5 +1,5 @@
 import { defHttp } from '../util/http/index';
-import { searchListModel, commentModel, blogModel } from './types/blogsModel';
+import { searchListModel, commentModel, blogModel, photoModel } from './types/blogsModel';
 
 enum API {
   blogListModel = 'api/blog/list',
@@ -7,7 +7,9 @@ enum API {
   GetBlogDetail = 'api/blog/GetBlogById',
   SaveCommentById = 'api/blog/SaveCommentByBlogId',
   DeleteCommentById = 'api/blog/DeleteCommentById',
-  SaveBlog = 'api/blog/SaveBlog'
+  SaveBlog = 'api/blog/SaveBlog',
+  SavePhoto = 'api/blog/SavePhoto',
+  GetPhotoList = 'api/blog/GetPhotoByUserId'
 }
 
 export function getBlogList(search: searchListModel) {
@@ -44,4 +46,19 @@ export function deleteCommentById(id: string) {
  */
 export function saveBlog(dto: blogModel) {
   return defHttp.post(API.SaveBlog, dto)
+}
+/**
+ * @return dto 上传照片
+ */
+export function savePhoto(dto: photoModel) {
+  return defHttp.post(API.SavePhoto, dto)
+}
+
+/**
+ * @param {string} userId
+ */
+export function getPhotoByUserId(userId: string) {
+  return defHttp.get(API.GetPhotoList, {
+    params: { userId }
+  })
 }

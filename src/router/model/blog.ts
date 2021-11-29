@@ -10,6 +10,11 @@ const BlogRoutes: RouteRecordRaw[] = [
     path: '/writeBlog',
     name: 'WriteBlog',
     component: () => import('/@/view/home/components/WriteBlog.vue')
+  },
+  {
+    path: '/uploadPhoto',
+    name: 'UploadPhoto',
+    component: () => import('/@/view/photo/components/UploadPhoto.vue')
   }
 ]
 

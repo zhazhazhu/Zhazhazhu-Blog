@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { getBlogList } from '../../api/blogs';
 import { searchListModel } from '../../api/types/blogsModel';
 import { blogListModel } from './types/fileModel';
+import router from '/@/router';
 
 const initBlogList = () => ref<blogListModel[]>([])
 
@@ -26,6 +27,14 @@ async function getBlog() {
   }
 }
 
+function viewBlog(blog) {
+  router.push({
+    path: 'blog',
+    name: 'Blog',
+    params: { id: blog.id }
+  })
+}
+
 onMounted(() => {
   getBlog()
 })
@@ -42,13 +51,13 @@ onMounted(() => {
         <div v-for="blog in blogList" :key="blog.id" class="list-content">
           <div class="icon"></div>
           <div class="time">{{ dayjs(blog.createdAt).format('MM/DD') }}</div>
-          <el-button type="text" class="title">{{ blog.title }}</el-button>
+          <el-button type="text" class="title" @click="viewBlog(blog)">{{ blog.title }}</el-button>
         </div>
       </div>
     </main>
     <footer>
-    <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
-  </footer>
+      <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
+    </footer>
   </div>
 </template>
 

@@ -51,7 +51,7 @@ function signIn() {
 
 const client_id = 'Iv1.a3ade557f047dac6'
 function loginGithub() {
-  window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3200/github/callback`
+  window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://www.qzzhu.cn/github/callback`
 }
 
 function goRegister() {
