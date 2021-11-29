@@ -29,6 +29,7 @@ function signIn() {
         background: 'rgba(0, 0, 0, 0.7)',
       });
       const { code, data, message } = await login(user.value)
+      loading.close()
       if (code === 1) {
         const { token, expiresIn } = data
         await userStore.login(token, Date.now() + (expiresIn * 1000))
@@ -41,7 +42,6 @@ function signIn() {
           message
         })
       }
-      loading.close()
       return true
     } else {
       return false
