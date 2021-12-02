@@ -13,7 +13,6 @@ const code = ref('')
 async function login() {
   code.value = String(route.query.code)
   const { code: resCode, data, message } = await gitHubLogin(code.value)
-  debugger
   if (resCode === 1) {
     userStore.setToken(data.token)
     userStore.setExpiresIn(data.expiresIn)
