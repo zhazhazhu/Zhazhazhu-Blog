@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import dayjs from 'dayjs';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUserStoreWithOut } from '../store/modules/user';
@@ -8,6 +7,9 @@ import MenuRoutes from '../router/model';
 const userStore = useUserStoreWithOut()
 const avatar = computed(() => {
   const head = window.projectConfig.hosts.avatar
+  if (userStore.getUserInfo?.avatar.includes('http')) {
+    return userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+  }
   return head + userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 })
 
