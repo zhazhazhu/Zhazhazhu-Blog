@@ -9,6 +9,8 @@ import { saveCommentById } from '/@/api/blogs';
 import { deleteCommentById } from '/@/api/blogs';
 import { ElMessage } from 'element-plus/lib';
 import { useConfirm } from 'balm-ui/plugins/confirm';
+import { ChatLineRound } from '@element-plus/icons'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 const userStore = useUserStoreWithOut()
 const userInfo = userStore.getUserInfo
@@ -43,7 +45,9 @@ async function saveComment(blogId) {
     userName: userInfo?.userName,
     avatar: userInfo?.avatar,
     content: commentInfo.value,
-    createdAt: null
+    createdAt: null,
+    parentId: null,
+    childrenId: null,
   }
   const { code, message } = await saveCommentById(dto)
   if (code === 1) {
@@ -80,6 +84,19 @@ function handleAvatar(avatar: string) {
 }
 
 const commentInfo = ref('')
+
+const commentElement = ref<PointerEvent>()
+function handleChildren(event) {
+  commentElement.value = event
+  commentElement.value?.pageY
+}
+
+function handleCommentTime(time: number) {
+  dayjs.extend(relativeTime)
+  var a = dayjs()
+  var b = dayjs(time)
+  return a.to(b)
+}
 </script>
 
 <template>
@@ -94,40 +111,45 @@ const commentInfo = ref('')
     <main>
       <div class="detail-content">
         <div v-html="blogDetail?.content" style="height: 85%;"></div>
-        <div class="button">
-          <el-button type="text">前一篇</el-button>
-          <el-button type="text">后一篇</el-button>
-        </div>
-      </div>
-      <div class="comment">
-        <ui-divider></ui-divider>
       </div>
     </main>
     <footer>
+      <div class="text">
+        <span>{{ blogDetail?.commentList.length }}条评论</span>
+      </div>
       <div class="comment-input">
-        <el-avatar :size="36" :src="avatar"></el-avatar>
+        <el-avatar :size="42" :src="avatar"></el-avatar>
         <el-input
           type="textarea"
           placeholder="说点什么..."
           v-model="commentInfo"
           maxlength="100"
-          rows="4"
+          rows="5"
           show-word-limit
         ></el-input>
-        <!-- <ui-editor class="editor" v-model="commentInfo"></ui-editor> -->
       </div>
-      <div style="text-align: right;">
-        <el-button type="primary" size="mini" @click="saveComment(blogDetail?.id)">评论</el-button>
+      <div style="text-align: right;border-bottom: 1px solid #ebeef5; padding-bottom: 20px;">
+        <ui-button raised @click="saveComment(blogDetail?.id)">评论</ui-button>
       </div>
       <div v-for="comment in blogDetail?.commentList" :key="comment.id" class="comment-model">
-        <el-avatar :size="36" :src="handleAvatar(comment.avatar)"></el-avatar>
+        <el-avatar :size="42" :src="handleAvatar(comment.avatar)"></el-avatar>
         <div class="content-info">
           <div class="user">{{ comment.userName }}</div>
-          <div class="time">{{ dayjs(comment.createdAt * 1000).format('MM/DD') }}</div>
-          <div class="content">{{ comment.content }}</div>
-        </div>
-        <div v-if="comment.userId === userInfo?.id" style="line-height: 68px; height: 48px;">
-          <el-button type="text" size="mini" @click="deleteComment(comment.id)">删除</el-button>
+          <div class="content" @click="handleChildren($event)">{{ comment.content }}</div>
+          <div class="time-edit">
+            <div>{{ handleCommentTime(comment.createdAt) }}</div>
+            <div>
+              <ui-button
+                v-if="comment.userId === userInfo?.id"
+                @click="deleteComment(comment.id)"
+              >删除</ui-button>
+              <ui-button>
+                <el-icon>
+                  <ChatLineRound />
+                </el-icon>回复
+              </ui-button>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

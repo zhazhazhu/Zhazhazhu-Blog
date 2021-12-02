@@ -25,12 +25,11 @@ body {
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
     sans-serif;
+  background-color: #f7faff;
 }
 a {
   text-decoration: none;
 }
 .p-4 {
   min-height: calc(100vh - 76px);
-  width: calc(100% - 20px);
-  margin: 0 20px;
 }

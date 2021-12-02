@@ -30,4 +30,7 @@ export interface commentModel {
   avatar: string;
   content: string;
   createdAt: number;
+  parentId: string | null;
+  childrenId: string | null;
+  visible: boolean
 }

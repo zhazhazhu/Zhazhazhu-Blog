@@ -9,6 +9,7 @@ import UiIconButton from 'balm-ui/components/icon-button';
 import UiBottomSheet from 'balm-ui/components/bottom-sheet'
 import UiEditor from 'balm-ui/components/editor';
 import UiDialog from 'balm-ui/components/dialog';
+import UiMenu from 'balm-ui/components/menu';
 
 const elList = [
   UiButton,
@@ -19,7 +20,8 @@ const elList = [
   UiIconButton,
   UiBottomSheet,
   UiEditor,
-  UiDialog
+  UiDialog,
+  UiMenu
 ]
 
 function setupBalm(app: App) {

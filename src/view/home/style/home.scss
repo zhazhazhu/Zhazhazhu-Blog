@@ -50,10 +50,18 @@
 }
 .box-card{
   border: none;
+  margin-top: 20px;
   margin-left: 20px;
-  width: 95%;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   :deep(.el-card__header){
     border: none;
+    h2{
+      font-size: 20px;
+      margin-bottom: 8px;
+      margin-top: 0;
+    }
     .created-time{
       display: flex;
       align-items: center;
@@ -67,7 +75,7 @@
   }
   :deep(.el-card__body){
     font-size: 15px;
-    padding: 0px 20px;
+    padding: 10px 20px;
     div{
       max-height: 106px;
       overflow:hidden;

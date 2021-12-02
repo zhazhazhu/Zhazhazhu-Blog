@@ -3,8 +3,17 @@ $white1: #ebeef5;
 
 @media screen and (max-width: 500px) {
   header {
-    margin-left: 40px;
+    background-color: #fff;
+    padding-left: 60px;
+    padding-top: 10px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 400;
       margin-bottom: 4px;
     }
     .created-time {
@@ -19,8 +28,9 @@ $white1: #ebeef5;
     }
   }
   main {
-    max-width: 95%;
-    margin: 14px 0;
+    background-color: #fff;
+    padding: 14px;
+    margin-bottom: 10px;
     .detail-content {
       min-height: 130px;
       font-size: 14px;
@@ -30,59 +40,60 @@ $white1: #ebeef5;
       color: $white;
       display: flex;
       flex-direction: column;
-      .button {
-        width: 96%;
-        height: 15%;
-        display: flex;
-        justify-content: space-between;
-        button {
-          color: #464646;
-          font-weight: 400;
-        }
-      }
-    }
-    .comment {
-      margin-right: 16px;
     }
   }
 }
 footer {
-  * {
-    margin-bottom: 4px;
-  }
-  width: 92%;
+  padding: 14px;
+  background-color: #fff;
   .text {
-    display: flex;
-    * {
-      width: 30px;
-    }
+    font-weight: 400;
+    font-size: 18px;
+    color: $onText;
+    margin-bottom: 12px;
   }
   .comment-input {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
     .el-textarea {
       width: 85%;
     }
   }
   .comment-model {
-    padding: 10px 0;
+    padding-top: 10px;
     border-bottom: 1px solid $threeBorder;
     display: flex;
     .content-info {
       margin-left: 10px;
-      width: calc(100% - 70px);
+      width: calc(100% - 42px);
       .user {
         color: $onText;
-        font-size: 15px;
-        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 10px;
       }
-      .time{
-        color: $threeText;
+      .content {
+        color: $twoText;
         font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
       }
-      .content{
-        color: $onText;
+      .time-edit {
+        color: $threeText;
         font-size: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button{
+          font-size: 12px;
+          color: $threeText;
+          :deep(span){
+            display: flex;
+            align-items: center;
+          }
+        }
       }
     }
   }

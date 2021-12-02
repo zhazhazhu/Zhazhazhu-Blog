@@ -13,6 +13,8 @@ export interface commentModel {
   avatar?: string;
   createdAt?: number | null;
   content?: string;
+  parentId: string | null;
+  childrenId: string | null;
 }
 
 export interface blogModel {
