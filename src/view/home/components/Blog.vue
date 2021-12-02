@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { getBlogData } from '/@/api/blogs';
-import { blogDetailModel } from '../types/homeModel';
+import { blogDetailModel, commentModel } from '../types/homeModel';
 import dayjs from 'dayjs';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { saveCommentById } from '/@/api/blogs';
@@ -38,18 +38,23 @@ async function init() {
   }
 }
 
+const commentInfo = ref('')
+const childrenCommentInfo = ref('')
+const commentDto = ref<commentModel>({
+  blogId: '',
+  userId: userInfo?.id || '',
+  userName: userInfo?.userName || '',
+  avatar: userInfo?.avatar || '',
+  content: '',
+  createdAt: null,
+  parentId: null,
+  childrenId: null,
+})
+
 async function saveComment(blogId) {
-  const dto = {
-    blogId,
-    userId: userInfo?.id,
-    userName: userInfo?.userName,
-    avatar: userInfo?.avatar,
-    content: commentInfo.value,
-    createdAt: null,
-    parentId: null,
-    childrenId: null,
-  }
-  const { code, message } = await saveCommentById(dto)
+  commentDto.value.blogId = blogId
+  commentDto.value.content = commentInfo.value
+  const { code, message } = await saveCommentById(commentDto.value)
   if (code === 1) {
     ElMessage.success({
       message
@@ -83,19 +88,38 @@ function handleAvatar(avatar: string) {
   return uploadUrl + avatar
 }
 
-const commentInfo = ref('')
-
-const commentElement = ref<PointerEvent>()
-function handleChildren(event) {
-  commentElement.value = event
-  commentElement.value?.pageY
-}
-
 function handleCommentTime(time: number) {
   dayjs.extend(relativeTime)
   var a = dayjs()
   var b = dayjs(time)
   return a.to(b)
+}
+
+const commentActive = ref('')
+function replyComment(id) {
+  if (commentActive.value === id) {
+    commentActive.value = ''
+    return
+  }
+  commentActive.value = id
+}
+async function childrenReply(comment: commentModel) {
+  commentDto.value.blogId = comment.blogId
+  commentDto.value.parentId = comment.id || ''
+  commentDto.value.content = childrenCommentInfo.value
+  const { code, message } = await saveCommentById(commentDto.value)
+  if (code === 1) {
+    ElMessage.success({
+      message
+    })
+    childrenCommentInfo.value = ''
+    commentActive.value = ''
+    init()
+  } else {
+    ElMessage.error({
+      message
+    })
+  }
 }
 </script>
 
@@ -126,6 +150,7 @@ function handleCommentTime(time: number) {
           maxlength="100"
           rows="5"
           show-word-limit
+          resize="none"
         ></el-input>
       </div>
       <div style="text-align: right;border-bottom: 1px solid #ebeef5; padding-bottom: 20px;">
@@ -135,19 +160,36 @@ function handleCommentTime(time: number) {
         <el-avatar :size="42" :src="handleAvatar(comment.avatar)"></el-avatar>
         <div class="content-info">
           <div class="user">{{ comment.userName }}</div>
-          <div class="content" @click="handleChildren($event)">{{ comment.content }}</div>
+          <div class="content">{{ comment.content }}</div>
           <div class="time-edit">
-            <div>{{ handleCommentTime(comment.createdAt) }}</div>
+            <div>{{ handleCommentTime(Number(comment.createdAt)) }}</div>
             <div>
               <ui-button
                 v-if="comment.userId === userInfo?.id"
                 @click="deleteComment(comment.id)"
               >删除</ui-button>
-              <ui-button>
-                <el-icon>
-                  <ChatLineRound />
-                </el-icon>回复
+              <ui-button @click="replyComment(comment.id)">
+                <span v-if="commentActive === comment.id ? false : true">
+                  <el-icon>
+                    <ChatLineRound />
+                  </el-icon>回复
+                </span>
+                <span v-else>取消</span>
               </ui-button>
+            </div>
+          </div>
+          <div v-if="commentActive === comment.id ? true : false">
+            <el-input
+              type="textarea"
+              placeholder="请输入回复内容"
+              v-model="childrenCommentInfo"
+              maxlength="100"
+              rows="5"
+              show-word-limit
+              resize="none"
+            ></el-input>
+            <div style="text-align: right;border-bottom: 1px solid #ebeef5; padding: 20px 0;">
+              <ui-button raised @click="childrenReply(comment)">确认回复</ui-button>
             </div>
           </div>
         </div>

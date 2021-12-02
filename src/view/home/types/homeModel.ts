@@ -24,13 +24,14 @@ export interface blogDetailModel {
  * @param 评论
  */
 export interface commentModel {
-  id: string;
+  id?: string;
+  blogId: string;
   userId: string;
   userName: string;
   avatar: string;
   content: string;
-  createdAt: number;
+  createdAt: number | null;
   parentId: string | null;
   childrenId: string | null;
-  visible: boolean
+  commentList?: any
 }
