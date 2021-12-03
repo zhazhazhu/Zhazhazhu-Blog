@@ -21,16 +21,16 @@ const MenuRoutes: RouteRecordRaw[] = [
       keepAlive: true
     }
   },
-  {
-    path: '/fun',
-    name: 'Fun',
-    component: () => import('/@/view/photo/index.vue'),
-    meta: {
-      Icon: 'data_saver_off',
-      Menu: '趣事',
-      keepAlive: true
-    }
-  },
+  // {
+  //   path: '/fun',
+  //   name: 'Fun',
+  //   component: () => import('/@/view/photo/index.vue'),
+  //   meta: {
+  //     Icon: 'data_saver_off',
+  //     Menu: '趣事',
+  //     keepAlive: true
+  //   }
+  // },
   {
     path: '/photo',
     name: 'Photo',
