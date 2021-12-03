@@ -8,8 +8,8 @@ import type { ElForm } from 'element-plus';
 import router from '/@/router';
 
 const user = ref<userModel>({
-  userName: '',
-  passWord: ''
+  userName: 'Zhazhazhu',
+  passWord: '123456'
 })
 
 const userFormRef = ref<InstanceType<typeof ElForm>>()
