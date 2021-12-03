@@ -47,6 +47,11 @@ function whiteBlog() {
   router.push('/writeBlog')
 }
 
+function changeCurrent(val) {
+  searchData.value.pageIndex = val
+  getBlog()
+}
+
 onMounted(() => {
   getBlog()
 })
@@ -82,7 +87,11 @@ onMounted(() => {
       </el-card>
     </div>
     <div class="footer">
-      <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="searchData.totalCount"
+        @current-change="changeCurrent"
+      ></el-pagination>
     </div>
   </div>
 </template>
