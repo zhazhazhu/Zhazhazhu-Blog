@@ -85,5 +85,11 @@
   }
 }
 .footer{
-  margin: 20px 50px 50px 25px;
+  display: flex;
+  align-items: center;
+  background-color: #FFF;
+  height: 40px;
+  margin: 18px 18px 50px 18px;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 }
