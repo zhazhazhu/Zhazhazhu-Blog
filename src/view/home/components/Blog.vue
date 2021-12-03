@@ -28,13 +28,15 @@ onMounted(() => {
 })
 
 const blogDetail = ref<blogDetailModel>()
+const totals = ref(0)
 
 async function init() {
   const { id } = route.params
   BlogId.value = id as string
-  const { code, data } = await getBlogData(BlogId.value)
+  const { code, data, total } = await getBlogData(BlogId.value)
   if (code === 1) {
     blogDetail.value = data
+    totals.value = total || 0
   }
 }
 
@@ -169,7 +171,7 @@ async function childrenReply(item: commentModel, comment) {
     </main>
     <footer>
       <div class="text">
-        <span>{{ blogDetail?.commentList.length }}条评论</span>
+        <span>{{ totals }}条评论</span>
       </div>
       <div class="comment-input">
         <el-avatar :size="42" :src="avatar"></el-avatar>
