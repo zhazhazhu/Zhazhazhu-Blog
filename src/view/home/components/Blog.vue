@@ -48,7 +48,10 @@ const commentDto = ref<commentModel>({
   content: '',
   createdAt: null,
   parentId: null,
+  parentName: null,
+  parentAvatar: null,
   childrenId: null,
+  rootId: null,
 })
 
 async function saveComment(blogId) {
@@ -103,10 +106,26 @@ function replyComment(id) {
   }
   commentActive.value = id
 }
-async function childrenReply(comment: commentModel) {
-  commentDto.value.blogId = comment.blogId
-  commentDto.value.parentId = comment.id || ''
+
+const commentChildrenActive = ref('')
+function replyChildrenComment(id) {
+  if (commentChildrenActive.value === id) {
+    commentChildrenActive.value = ''
+    return
+  }
+  commentChildrenActive.value = id
+}
+
+async function childrenReply(item: commentModel, comment) {
+  commentDto.value.blogId = item.blogId
+  commentDto.value.parentId = item.id || ''
+  commentDto.value.parentName = item.userName || ''
+  commentDto.value.parentAvatar = item.avatar || ''
+  commentDto.value.rootId = item.id || ''
   commentDto.value.content = childrenCommentInfo.value
+  if (comment) {
+    commentDto.value.rootId = comment.id
+  }
   const { code, message } = await saveCommentById(commentDto.value)
   if (code === 1) {
     ElMessage.success({
@@ -114,6 +133,7 @@ async function childrenReply(comment: commentModel) {
     })
     childrenCommentInfo.value = ''
     commentActive.value = ''
+    commentChildrenActive.value = ''
     init()
   } else {
     ElMessage.error({
@@ -178,6 +198,46 @@ async function childrenReply(comment: commentModel) {
               </ui-button>
             </div>
           </div>
+          <template v-for="item in comment.commentList">
+            <div class="children-comment">
+              <el-avatar :size="42" :src="handleAvatar(item.avatar)"></el-avatar>
+              <div class="content-info">
+                <div class="user">{{ item.userName }}</div>
+                <div class="content">回复 {{ item.parentName }}：{{ item.content }}</div>
+                <div class="time-edit">
+                  <div>{{ handleCommentTime(Number(item.createdAt)) }}</div>
+                  <div>
+                    <ui-button
+                      v-if="item.userId === userInfo?.id"
+                      @click="deleteComment(item.id)"
+                    >删除</ui-button>
+                    <ui-button @click="replyChildrenComment(item.id)">
+                      <span v-if="commentChildrenActive === item.id ? false : true">
+                        <el-icon>
+                          <ChatLineRound />
+                        </el-icon>回复
+                      </span>
+                      <span v-else>取消</span>
+                    </ui-button>
+                  </div>
+                </div>
+                <div v-if="commentChildrenActive === item.id ? true : false">
+                  <el-input
+                    type="textarea"
+                    placeholder="请输入回复内容"
+                    v-model="childrenCommentInfo"
+                    maxlength="100"
+                    rows="5"
+                    show-word-limit
+                    resize="none"
+                  ></el-input>
+                  <div style="text-align: right;border-bottom: 1px solid #ebeef5; padding: 20px 0;">
+                    <ui-button raised @click="childrenReply(item, comment)">确认回复</ui-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div v-if="commentActive === comment.id ? true : false">
             <el-input
               type="textarea"
@@ -189,7 +249,7 @@ async function childrenReply(comment: commentModel) {
               resize="none"
             ></el-input>
             <div style="text-align: right;border-bottom: 1px solid #ebeef5; padding: 20px 0;">
-              <ui-button raised @click="childrenReply(comment)">确认回复</ui-button>
+              <ui-button raised @click="childrenReply(comment, null)">确认回复</ui-button>
             </div>
           </div>
         </div>

@@ -32,6 +32,9 @@ export interface commentModel {
   content: string;
   createdAt: number | null;
   parentId: string | null;
+  parentName: string | null;
+  parentAvatar: string | null;
   childrenId: string | null;
+  rootId: string | null;
   commentList?: any
 }
