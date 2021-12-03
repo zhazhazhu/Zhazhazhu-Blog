@@ -1,10 +1,16 @@
 <script lang='ts' setup>
+import { computed } from 'vue';
 import { useUserStoreWithOut } from '/@/store/modules/user';
 
 const userStore = useUserStoreWithOut()
 const userInfo = userStore.getUserInfo
-
-
+const avatar = computed(() => {
+  const head = window.projectConfig.hosts.avatar
+  if (userStore.getUserInfo?.avatar.includes('http')) {
+    return userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+  }
+  return head + userStore.getUserInfo?.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+})
 function goGitHub() {
   window.location.href = "https://github.com/zhazhazhu"
 }
@@ -23,7 +29,7 @@ function logout() {
       <el-row>
         <el-col :span="2"></el-col>
         <el-col :span="6">
-          <el-avatar :size="70" :src="userInfo?.avatar"></el-avatar>
+          <el-avatar :size="70" :src="avatar"></el-avatar>
         </el-col>
         <el-col :span="12">
           <div class="userName">{{ userInfo?.userName }}</div>
