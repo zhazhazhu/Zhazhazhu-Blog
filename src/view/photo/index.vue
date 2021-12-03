@@ -11,10 +11,8 @@ const userId = userStore.getUserInfo?.id || ''
 const photoList = ref<photoListModel[]>([])
 
 const labelsType = ref(1)
-const open = ref(false)
 function showDialog() {
-  // router.push('/uploadPhoto')
-  open.value = true
+  router.push('/uploadPhoto')
 }
 
 onMounted(() => {
@@ -32,14 +30,6 @@ async function init() {
 <template>
   <div class="p-4">
     <ui-icon class="upload-button" @click="showDialog">file_upload</ui-icon>
-    <ui-menu
-    class="menu-ui"
-      v-model="open"
-      :items="[
-           'Back',
-           'Forward',
-         ]"
-    ></ui-menu>
     <header>
       <h2>相册</h2>
     </header>
