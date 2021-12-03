@@ -57,7 +57,7 @@ const commentDto = ref<commentModel>({
 })
 
 async function saveComment(blogId) {
-  if (!commentDto.value.content) {
+  if (!commentInfo.value) {
     return ElMessage({
       message: '内容不能为空'
     })
