@@ -18,9 +18,7 @@ export default defineComponent({
 
     const blogForm = ref({
       title: '',
-      abstract: computed(() =>
-        replaceHtml(content.value).substring(0, 100)
-      )
+      abstract: ''
     })
     const content = ref('')
 
@@ -33,6 +31,7 @@ export default defineComponent({
         })
         return
       }
+      blogForm.value.abstract = replaceHtml(content.value).substring(0, 100)
       visible.value = true
     }
 
