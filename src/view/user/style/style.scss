@@ -1,0 +1,60 @@
+header {
+  height: 200px;
+  img {
+    opacity: 0.25;
+    height: 200px;
+  }
+  .head {
+    height: 80px;
+  }
+  :deep(.el-avatar) {
+    box-shadow: 0px 5px 20px 1px rgb(0 46 111 / 10%);
+  }
+  .userName {
+    font-size: 30px;
+  }
+  .email {
+    margin-top: 10px;
+    font-size: 14px;
+    color: $threeText;
+  }
+}
+main {
+  .head-bottom {
+    .title {
+      font-size: 12px;
+      color: $threeText;
+      margin-bottom: 10px;
+    }
+  }
+  .buttons {
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    margin: 0 38px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    .text {
+      color: $twoText;
+      font-size: 14px;
+      margin-left: 20px;
+    }
+    .icon {
+      color: $twoText;
+      font-size: 14px;
+      margin-left: auto;
+    }
+  }
+  .logout{
+    margin: 0 38px;
+    height: 46px;
+    button{
+      width: 100%;
+      height: 38px !important;
+      background-color: #ee6262;
+    }
+  }
+}

@@ -44,7 +44,7 @@ const MenuRoutes: RouteRecordRaw[] = [
   {
     path: '/user',
     name: 'User',
-    component: () => import('/@/view/photo/index.vue'),
+    component: () => import('/@/view/user/index.vue'),
     meta: {
       Icon: 'scatter_plot',
       Menu: '我的',
