@@ -71,12 +71,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 header {
-  height: 60px;
-  line-height: 50px;
+  height: 70px;
+  line-height: 70px;
 }
 main {
+  padding: 18px;
   :deep(.el-textarea__inner) {
     border: none;
+    padding: 0;
   }
 }
 </style>
