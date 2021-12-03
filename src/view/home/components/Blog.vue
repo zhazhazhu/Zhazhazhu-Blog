@@ -55,6 +55,11 @@ const commentDto = ref<commentModel>({
 })
 
 async function saveComment(blogId) {
+  if (!commentDto.value.content) {
+    return ElMessage({
+      message: '内容不能为空'
+    })
+  }
   commentDto.value.blogId = blogId
   commentDto.value.content = commentInfo.value
   const { code, message } = await saveCommentById(commentDto.value)
@@ -117,6 +122,11 @@ function replyChildrenComment(id) {
 }
 
 async function childrenReply(item: commentModel, comment) {
+  if (!commentDto.value.content) {
+    return ElMessage({
+      message: '内容不能为空'
+    })
+  }
   commentDto.value.blogId = item.blogId
   commentDto.value.parentId = item.id || ''
   commentDto.value.parentName = item.userName || ''
