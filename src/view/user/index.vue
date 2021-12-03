@@ -60,6 +60,9 @@ function logout() {
       <div class="logout">
         <ui-button raised @click="logout">退出登录</ui-button>
       </div>
+      <footer>
+        <span>Logo：特别感谢邵师傅</span>
+      </footer>
     </main>
   </div>
 </template>
