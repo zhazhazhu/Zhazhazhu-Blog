@@ -107,6 +107,7 @@ function handleCommentTime(time: number) {
 
 const commentActive = ref('')
 function replyComment(id) {
+  commentChildrenActive.value = ''
   if (commentActive.value === id) {
     commentActive.value = ''
     return
@@ -116,6 +117,7 @@ function replyComment(id) {
 
 const commentChildrenActive = ref('')
 function replyChildrenComment(id) {
+  commentActive.value = ''
   if (commentChildrenActive.value === id) {
     commentChildrenActive.value = ''
     return
@@ -124,7 +126,7 @@ function replyChildrenComment(id) {
 }
 
 async function childrenReply(item: commentModel, comment) {
-  if (!commentDto.value.content) {
+  if (!childrenCommentInfo.value) {
     return ElMessage({
       message: '内容不能为空'
     })
