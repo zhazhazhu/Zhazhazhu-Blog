@@ -12,7 +12,7 @@ const blogList = initBlogList()
 
 const searchData = ref<searchListModel>({
   pageIndex: 1, //当前页
-  pageSize: 20, //展示多少条数据
+  pageSize: 9, //展示多少条数据
   keyWord: "", //搜索
   sortField: "",
   sortType: "",
@@ -33,6 +33,11 @@ function viewBlog(blog) {
     name: 'Blog',
     params: { id: blog.id }
   })
+}
+
+function changeCurrent(val) {
+  searchData.value.pageIndex = val
+  getBlog()
 }
 
 onMounted(() => {
@@ -56,7 +61,11 @@ onMounted(() => {
       </div>
     </main>
     <footer>
-      <el-pagination layout="prev, pager, next" :total="searchData.totalCount"></el-pagination>
+      <el-pagination
+        layout="prev, pager, next"
+        @current-change="changeCurrent"
+        :total="searchData.totalCount"
+      ></el-pagination>
     </footer>
   </div>
 </template>

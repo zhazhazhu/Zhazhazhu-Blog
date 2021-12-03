@@ -2,8 +2,12 @@ header{
   margin-left: 60px;
 }
 main{
+  margin: 18px;
+  background-color: #FFF;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   .content{
-    margin-left: 60px;
+    margin-left: 50px;
     .list-content{
       display: flex;
       align-items: center;
@@ -36,6 +40,11 @@ main{
   }
 }
 footer{
-  margin-left: 40px;
-  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  background-color: #FFF;
+  height: 40px;
+  margin: 18px 18px 50px 18px;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 }
